@@ -385,7 +385,73 @@ main {
 }
 
 
-.manage-form{display:grid;gap:10px}.manage-form label{display:block;font-weight:bold;font-size:14px;margin-bottom:5px}.manage-form input,.manage-form select{width:100%;padding:11px;border:1px solid #d1d5db;border-radius:9px;font-size:16px}.manage-form button{border:none;border-radius:10px;background:#2563eb;color:white;padding:12px;font-size:16px;font-weight:bold;cursor:pointer}.managed-action{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px;border-radius:10px;margin-bottom:8px;background:#f9fafb;border:1px solid #e5e7eb}.managed-action-info{flex:1;min-width:0}.managed-action-name{font-weight:bold}.managed-action-points{font-size:13px;margin-top:3px}.delete-action-btn{border:none;border-radius:8px;background:#dc2626;color:white;padding:8px 10px;cursor:pointer;font-weight:bold}
+.manage-form {
+    display: grid;
+    gap: 10px;
+}
+
+.manage-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.manage-form input,
+.manage-form select {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #d1d5db;
+    border-radius: 9px;
+    font-size: 16px;
+}
+
+.manage-form button {
+    border: none;
+    border-radius: 10px;
+    background: #2563eb;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.managed-action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+}
+
+.managed-action-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.managed-action-name {
+    font-weight: bold;
+}
+
+.managed-action-points {
+    font-size: 13px;
+    margin-top: 3px;
+}
+
+.delete-action-btn {
+    border: none;
+    border-radius: 8px;
+    background: #dc2626;
+    color: white;
+    padding: 8px 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
 @media (max-width: 600px) {
 
     nav button {
@@ -593,13 +659,170 @@ main {
             ✅ Récompenses
         </div>
 
-        <div id="leo-rewards" class="action-grid"></div>
+        <div class="action-grid">
+
+            <button
+                class="action-btn reward"
+                onclick="addAction('leo','Faire son lit',1,'reward')">
+
+                🛏️ Faire son lit<br>
+                +1 pt
+
+            </button>
+
+
+            <button
+                class="action-btn reward"
+                onclick="addAction('leo','Ranger et nettoyer après son déjeuner',1,'reward')">
+
+                🍽️ Ranger et nettoyer après son déjeuner<br>
+                +1 pt
+
+            </button>
+
+
+            <button
+                class="action-btn reward"
+                onclick="addAction('leo','Ranger la table et la nettoyer',1,'reward')">
+
+                🧽 Ranger la table et la nettoyer<br>
+                +1 pt
+
+            </button>
+
+
+            <button
+                class="action-btn reward"
+                onclick="addAction('leo','Ranger sa chambre simplement',2,'reward')">
+
+                🧹 Ranger sa chambre simplement<br>
+                +2 pts
+
+            </button>
+
+
+            <button
+                class="action-btn reward"
+                onclick="addAction('leo','Ranger sa chambre de manière irréprochable',10,'reward')">
+
+                ✨ Chambre irréprochable<br>
+                +10 pts
+
+            </button>
+
+
+            <button
+                class="action-btn reward"
+                onclick="addAction('leo','Ramasser les crottes',20,'reward')">
+
+                💩 Ramasser les crottes<br>
+                +20 pts
+
+            </button>
+
+            <button
+                class="action-btn reward"
+                onclick="addAction('leo','Ramasser les crottes à 2',10,'reward')">
+
+                💩💩 Ramasser les crottes à 2<br>
+                +10 pts
+
+            </button>
+
+
+            <button
+                class="action-btn reward"
+                onclick="addAction('leo','Passer l’aspirateur correctement sur 1 niveau',20,'reward')">
+
+                🧹 Aspirateur sur 1 niveau<br>
+                +20 pts
+
+            </button>
+
+        </div>
+
 
         <div class="section-title">
             ❌ Punitions
         </div>
 
-        <div id="leo-punishments" class="action-grid"></div>
+        <div class="action-grid">
+
+            <button
+                class="action-btn punishment"
+                onclick="addAction('leo','Linge qui traîne',-1,'punishment')">
+
+                👕 Linge qui traîne<br>
+                -1 pt
+
+            </button>
+
+
+            <button
+                class="action-btn punishment"
+                onclick="addAction('leo','Chaussures qui traînent',-1,'punishment')">
+
+                👟 Chaussures qui traînent<br>
+                -1 pt
+
+            </button>
+
+
+            <button
+                class="action-btn punishment"
+                onclick="addAction('leo','Chamaillerie',-1,'punishment')">
+
+                😤 Chamaillerie<br>
+                -1 pt
+
+            </button>
+
+
+            <button
+                class="action-btn punishment"
+                onclick="addAction('leo','Bagarre',-5,'punishment')">
+
+                🤼 Bagarre<br>
+                -5 pts
+
+            </button>
+
+
+            <button
+                class="action-btn punishment"
+                onclick="addAction('leo','Gros mots',-5,'punishment')">
+
+                🤬 Gros mots<br>
+                -5 pts
+
+            </button>
+
+            <button
+                class="action-btn punishment"
+                onclick="addAction('leo','Faire une crise',-5,'punishment')">
+
+                😡 Faire une crise<br>
+                -5 pts
+
+            </button>
+
+
+            <button
+                class="action-btn punishment"
+                onclick="addAction('leo','SDB sale',-10,'punishment')">
+
+                🚿 SDB sale<br>
+                -10 pts
+
+            </button>
+
+        </div>
+
+        <div class="section-title">
+            ⭐ Actions personnalisées
+        </div>
+
+        <div id="leo-custom-actions" class="action-grid"></div>
 
     </div>
 
@@ -647,13 +870,170 @@ main {
             ✅ Récompenses
         </div>
 
-        <div id="cloe-rewards" class="action-grid"></div>
+        <div class="action-grid">
+
+            <button
+                class="action-btn reward"
+                onclick="addAction('cloe','Faire son lit',1,'reward')">
+
+                🛏️ Faire son lit<br>
+                +1 pt
+
+            </button>
+
+
+            <button
+                class="action-btn reward"
+                onclick="addAction('cloe','Ranger et nettoyer après son déjeuner',1,'reward')">
+
+                🍽️ Ranger et nettoyer après son déjeuner<br>
+                +1 pt
+
+            </button>
+
+
+            <button
+                class="action-btn reward"
+                onclick="addAction('cloe','Ranger la table et la nettoyer',1,'reward')">
+
+                🧽 Ranger la table et la nettoyer<br>
+                +1 pt
+
+            </button>
+
+
+            <button
+                class="action-btn reward"
+                onclick="addAction('cloe','Ranger sa chambre simplement',2,'reward')">
+
+                🧹 Ranger sa chambre simplement<br>
+                +2 pts
+
+            </button>
+
+
+            <button
+                class="action-btn reward"
+                onclick="addAction('cloe','Ranger sa chambre de manière irréprochable',10,'reward')">
+
+                ✨ Chambre irréprochable<br>
+                +10 pts
+
+            </button>
+
+
+            <button
+                class="action-btn reward"
+                onclick="addAction('cloe','Ramasser les crottes',20,'reward')">
+
+                💩 Ramasser les crottes<br>
+                +20 pts
+
+            </button>
+
+            <button
+                class="action-btn reward"
+                onclick="addAction('cloe','Ramasser les crottes à 2',10,'reward')">
+
+                💩💩 Ramasser les crottes à 2<br>
+                +10 pts
+
+            </button>
+
+
+            <button
+                class="action-btn reward"
+                onclick="addAction('cloe','Passer l’aspirateur correctement sur 1 niveau',20,'reward')">
+
+                🧹 Aspirateur sur 1 niveau<br>
+                +20 pts
+
+            </button>
+
+        </div>
+
 
         <div class="section-title">
             ❌ Punitions
         </div>
 
-        <div id="cloe-punishments" class="action-grid"></div>
+        <div class="action-grid">
+
+            <button
+                class="action-btn punishment"
+                onclick="addAction('cloe','Linge qui traîne',-1,'punishment')">
+
+                👕 Linge qui traîne<br>
+                -1 pt
+
+            </button>
+
+
+            <button
+                class="action-btn punishment"
+                onclick="addAction('cloe','Chaussures qui traînent',-1,'punishment')">
+
+                👟 Chaussures qui traînent<br>
+                -1 pt
+
+            </button>
+
+
+            <button
+                class="action-btn punishment"
+                onclick="addAction('cloe','Chamaillerie',-1,'punishment')">
+
+                😤 Chamaillerie<br>
+                -1 pt
+
+            </button>
+
+
+            <button
+                class="action-btn punishment"
+                onclick="addAction('cloe','Bagarre',-5,'punishment')">
+
+                🤼 Bagarre<br>
+                -5 pts
+
+            </button>
+
+
+            <button
+                class="action-btn punishment"
+                onclick="addAction('cloe','Gros mots',-5,'punishment')">
+
+                🤬 Gros mots<br>
+                -5 pts
+
+            </button>
+
+            <button
+                class="action-btn punishment"
+                onclick="addAction('cloe','Faire une crise',-5,'punishment')">
+
+                😡 Faire une crise<br>
+                -5 pts
+
+            </button>
+
+
+            <button
+                class="action-btn punishment"
+                onclick="addAction('cloe','SDB sale',-10,'punishment')">
+
+                🚿 SDB sale<br>
+                -10 pts
+
+            </button>
+
+        </div>
+
+        <div class="section-title">
+            ⭐ Actions personnalisées
+        </div>
+
+        <div id="cloe-custom-actions" class="action-grid"></div>
 
     </div>
 
@@ -794,10 +1174,81 @@ main {
 </section>
 
 
-<section id="page-gestion" class="page">
-<div class="card"><h2>⚙️ Gestion des actions</h2><p>Ajoute une récompense ou une punition disponible pour <strong>Léo et Cloé</strong>.</p><div class="manage-form"><div><label for="actionName">Texte de l'action</label><input id="actionName" type="text" maxlength="100" placeholder="Ex. Aider à mettre la table"></div><div><label for="actionIcon">Icône</label><input id="actionIcon" type="text" maxlength="10" placeholder="⭐"></div><div><label for="actionType">Type</label><select id="actionType"><option value="reward">✅ Récompense</option><option value="punishment">❌ Punition</option></select></div><div><label for="actionPoints">Points</label><input id="actionPoints" type="number" min="1" step="1" placeholder="Ex. 5"></div><button onclick="createActionType()">➕ Ajouter l'action</button></div></div>
-<div class="card"><h2>📋 Actions disponibles</h2><div id="managedActions"><div class="loading">Chargement…</div></div></div>
+<!-- =========================
+     GESTION DES ACTIONS
+========================= -->
+
+<section
+    id="page-gestion"
+    class="page">
+
+    <div class="card">
+
+        <h2>⚙️ Gestion des actions</h2>
+
+        <p>
+            Ajoute une récompense ou une punition disponible
+            pour Léo et Cloé.
+        </p>
+
+        <div class="manage-form">
+
+            <div>
+                <label for="actionName">Texte de l'action</label>
+                <input
+                    id="actionName"
+                    type="text"
+                    maxlength="100"
+                    placeholder="Ex. Aider à mettre la table">
+            </div>
+
+            <div>
+                <label for="actionIcon">Icône</label>
+                <input
+                    id="actionIcon"
+                    type="text"
+                    maxlength="10"
+                    placeholder="⭐">
+            </div>
+
+            <div>
+                <label for="actionType">Type</label>
+                <select id="actionType">
+                    <option value="reward">✅ Récompense</option>
+                    <option value="punishment">❌ Punition</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="actionPoints">Points</label>
+                <input
+                    id="actionPoints"
+                    type="number"
+                    min="1"
+                    step="1"
+                    placeholder="Ex. 5">
+            </div>
+
+            <button onclick="createActionType()">
+                ➕ Ajouter l'action
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <h2>📋 Actions personnalisées</h2>
+
+        <div id="managedActions">
+            <div class="loading">Chargement…</div>
+        </div>
+
+    </div>
+
 </section>
+
 </main>
 
 </div>
@@ -1108,7 +1559,6 @@ async function loadData() {
     ).textContent =
         "🟢 Synchronisé";
 
-
     await loadActionTypes();
 
     update();
@@ -1117,13 +1567,219 @@ async function loadData() {
 
 
 /* =========================================================
-   TYPES D'ACTIONS
+   GESTION DES ACTIONS PERSONNALISÉES
 ========================================================= */
-async function loadActionTypes(){const {data:rows,error}=await supabaseClient.from("action_types").select("*").order("id",{ascending:true});if(error){console.error(error);alert("Impossible de charger les actions.\n\n"+error.message);return;}actionTypes=rows||[];renderActionButtons();renderManagedActions();}
-function renderActionButtons(){for(const child of ["leo","cloe"]){const r=document.getElementById(`${child}-rewards`),p=document.getElementById(`${child}-punishments`);if(!r||!p)continue;r.innerHTML=actionTypes.filter(a=>a.type==="reward").map(a=>`<button class="action-btn reward" onclick="addAction('${child}',${JSON.stringify(a.name)},${Number(a.points)},'reward')">${escapeHtml(a.icon)} ${escapeHtml(a.name)}<br>+${Math.abs(Number(a.points))} ${Math.abs(Number(a.points))>1?"pts":"pt"}</button>`).join("");p.innerHTML=actionTypes.filter(a=>a.type==="punishment").map(a=>`<button class="action-btn punishment" onclick="addAction('${child}',${JSON.stringify(a.name)},${Number(a.points)},'punishment')">${escapeHtml(a.icon)} ${escapeHtml(a.name)}<br>${Number(a.points)} ${Math.abs(Number(a.points))>1?"pts":"pt"}</button>`).join("");}}
-function renderManagedActions(){const c=document.getElementById("managedActions");if(!c)return;const group=(title,items)=>`<div class="section-title">${title}</div>`+(items.length?items.map(a=>`<div class="managed-action"><div class="managed-action-info"><div class="managed-action-name">${escapeHtml(a.icon)} ${escapeHtml(a.name)}</div><div class="managed-action-points ${a.points>=0?"positive":"negative"}">${a.points>0?"+":""}${Number(a.points)} pt</div></div><button class="delete-action-btn" onclick="deleteActionType(${Number(a.id)})">🗑️ Supprimer</button></div>`).join(""):"<div class=\"empty\">Aucune action</div>");c.innerHTML=group("✅ Récompenses",actionTypes.filter(a=>a.type==="reward"))+group("❌ Punitions",actionTypes.filter(a=>a.type==="punishment"));}
-async function createActionType(){const name=document.getElementById("actionName").value.trim(),icon=document.getElementById("actionIcon").value.trim(),type=document.getElementById("actionType").value,raw=Number(document.getElementById("actionPoints").value);if(!name)return alert("Merci de renseigner le texte de l'action.");if(!icon)return alert("Merci de choisir une icône.");if(!Number.isFinite(raw)||raw<=0)return alert("Merci de renseigner un nombre de points supérieur à 0.");const points=type==="punishment"?-Math.abs(Math.round(raw)):Math.abs(Math.round(raw));const {data:inserted,error}=await supabaseClient.from("action_types").insert({name,icon,points,type}).select().single();if(error){console.error(error);return alert("Impossible d'ajouter l'action.\n\n"+error.message);}actionTypes.push(inserted);document.getElementById("actionName").value="";document.getElementById("actionIcon").value="";document.getElementById("actionPoints").value="";renderActionButtons();renderManagedActions();}
-async function deleteActionType(id){const a=actionTypes.find(x=>Number(x.id)===Number(id));if(!a)return;if(!confirm(`Supprimer cette action ?\n\n${a.icon} ${a.name}\n${a.points>0?"+":""}${a.points} pt`))return;const {error}=await supabaseClient.from("action_types").delete().eq("id",id);if(error){console.error(error);return alert("Impossible de supprimer l'action.\n\n"+error.message);}actionTypes=actionTypes.filter(x=>Number(x.id)!==Number(id));renderActionButtons();renderManagedActions();}
+
+async function loadActionTypes() {
+
+    const {
+        data: rows,
+        error
+    } = await supabaseClient
+        .from("action_types")
+        .select("*")
+        .order("id", { ascending: true });
+
+    if (error) {
+        console.error(error);
+        document.getElementById("connectionStatus").textContent =
+            "⚠️ Actions personnalisées indisponibles";
+        return;
+    }
+
+    actionTypes = rows || [];
+
+    renderCustomActions();
+    renderManagedActions();
+}
+
+function renderCustomActions() {
+
+    const leoContainer =
+        document.getElementById("leo-custom-actions");
+
+    const cloeContainer =
+        document.getElementById("cloe-custom-actions");
+
+    const customActions = actionTypes.filter(
+        a => Number(a.id) > 15
+    );
+
+    const build = child => customActions.map(a => `
+        <button
+            class="action-btn ${a.type === "reward" ? "reward" : "punishment"}"
+            onclick="addAction(${JSON.stringify(child)}, ${JSON.stringify(a.name)}, ${Number(a.points)}, ${JSON.stringify(a.type)})">
+
+            ${escapeHtml(a.icon)} ${escapeHtml(a.name)}<br>
+            ${Number(a.points) > 0 ? "+" : ""}${Number(a.points)}
+            ${Math.abs(Number(a.points)) > 1 ? "pts" : "pt"}
+
+        </button>
+    `).join("");
+
+    if (leoContainer) leoContainer.innerHTML = build("leo");
+    if (cloeContainer) cloeContainer.innerHTML = build("cloe");
+}
+
+function renderManagedActions() {
+
+    const container =
+        document.getElementById("managedActions");
+
+    if (!container) return;
+
+    const customActions = actionTypes.filter(
+        a => Number(a.id) > 15
+    );
+
+    if (!customActions.length) {
+        container.innerHTML = `
+            <div class="empty">
+                Aucune action personnalisée.
+            </div>
+        `;
+        return;
+    }
+
+    container.innerHTML = customActions.map(a => `
+        <div class="managed-action">
+
+            <div class="managed-action-info">
+
+                <div class="managed-action-name">
+                    ${escapeHtml(a.icon)} ${escapeHtml(a.name)}
+                </div>
+
+                <div class="managed-action-points ${
+                    Number(a.points) >= 0 ? "positive" : "negative"
+                }">
+                    ${Number(a.points) > 0 ? "+" : ""}${Number(a.points)} pt
+                    · ${a.type === "reward" ? "Récompense" : "Punition"}
+                </div>
+
+            </div>
+
+            <button
+                class="delete-action-btn"
+                onclick="deleteActionType(${Number(a.id)})">
+
+                🗑️ Supprimer
+
+            </button>
+
+        </div>
+    `).join("");
+}
+
+async function createActionType() {
+
+    const name =
+        document.getElementById("actionName").value.trim();
+
+    const icon =
+        document.getElementById("actionIcon").value.trim();
+
+    const type =
+        document.getElementById("actionType").value;
+
+    const rawPoints =
+        Number(document.getElementById("actionPoints").value);
+
+    if (!name) {
+        alert("Merci de renseigner le texte de l'action.");
+        return;
+    }
+
+    if (!icon) {
+        alert("Merci de renseigner une icône.");
+        return;
+    }
+
+    if (!Number.isFinite(rawPoints) || rawPoints <= 0) {
+        alert("Merci de renseigner un nombre de points supérieur à 0.");
+        return;
+    }
+
+    const points =
+        type === "punishment"
+            ? -Math.round(rawPoints)
+            : Math.round(rawPoints);
+
+    const {
+        data: inserted,
+        error
+    } = await supabaseClient
+        .from("action_types")
+        .insert({
+            name: name,
+            icon: icon,
+            points: points,
+            type: type
+        })
+        .select()
+        .single();
+
+    if (error) {
+        console.error(error);
+        alert(
+            "Impossible d'ajouter l'action.\n\n" +
+            error.message
+        );
+        return;
+    }
+
+    actionTypes.push(inserted);
+
+    document.getElementById("actionName").value = "";
+    document.getElementById("actionIcon").value = "";
+    document.getElementById("actionPoints").value = "";
+
+    renderCustomActions();
+    renderManagedActions();
+}
+
+async function deleteActionType(id) {
+
+    const action =
+        actionTypes.find(
+            a => Number(a.id) === Number(id)
+        );
+
+    if (!action) return;
+
+    const ok = confirm(
+        `Supprimer cette action ?\n\n` +
+        `${action.icon} ${action.name}\n` +
+        `${action.points > 0 ? "+" : ""}${action.points} pt`
+    );
+
+    if (!ok) return;
+
+    const {
+        error
+    } = await supabaseClient
+        .from("action_types")
+        .delete()
+        .eq("id", id);
+
+    if (error) {
+        console.error(error);
+        alert(
+            "Impossible de supprimer l'action.\n\n" +
+            error.message
+        );
+        return;
+    }
+
+    actionTypes =
+        actionTypes.filter(
+            a => Number(a.id) !== Number(id)
+        );
+
+    renderCustomActions();
+    renderManagedActions();
+}
+
 
 /* =========================================================
    AJOUT ACTION
@@ -2071,6 +2727,14 @@ function showPage(page) {
 
     }
 
+    if (
+        page === "gestion"
+    ) {
+
+        renderManagedActions();
+
+    }
+
 }
 
 
@@ -2112,7 +2776,28 @@ supabaseClient
     );
 
 
-supabaseClient.channel("action-types-realtime").on("postgres_changes",{event:"*",schema:"public",table:"action_types"},()=>loadActionTypes()).subscribe();
+supabaseClient
+    .channel("action-types-realtime")
+    .on(
+        "postgres_changes",
+        {
+            event: "*",
+            schema: "public",
+            table: "action_types"
+        },
+        payload => {
+
+            console.log(
+                "Changement des actions personnalisées :",
+                payload
+            );
+
+            loadActionTypes();
+
+        }
+    )
+    .subscribe();
+
 
 /* =========================================================
    SESSION AU DÉMARRAGE
