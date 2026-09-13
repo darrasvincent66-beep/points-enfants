@@ -3,11 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Points des enfants</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -17,6 +19,84 @@ body {
     font-family: Arial, sans-serif;
     background: #f3f4f6;
     color: #1f2937;
+}
+
+/* =========================
+   CONNEXION
+========================= */
+
+#loginScreen {
+    position: fixed;
+    inset: 0;
+    background: #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 9999;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    background: white;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 5px 25px rgba(0,0,0,.12);
+}
+
+.login-card h1 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+.login-card label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.login-card input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.login-card button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 10px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.login-card button:disabled {
+    opacity: .6;
+}
+
+#loginError {
+    display: none;
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+/* =========================
+   APPLICATION
+========================= */
+
+#app {
+    display: none;
 }
 
 header {
@@ -35,6 +115,18 @@ header h1 {
     margin-top: 7px;
     font-size: 13px;
     opacity: .9;
+}
+
+#logoutButton {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    border: none;
+    background: rgba(255,255,255,.2);
+    color: white;
+    padding: 7px 10px;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
 nav {
@@ -259,6 +351,7 @@ main {
 }
 
 @media (max-width: 600px) {
+
     nav button {
         font-size: 11px;
         padding: 10px 2px;
@@ -267,125 +360,332 @@ main {
     .action-grid {
         grid-template-columns: 1fr;
     }
+
+    #logoutButton {
+        position: static;
+        margin-top: 8px;
+    }
 }
+
 </style>
 </head>
 
 <body>
 
+<!-- =========================
+     ÉCRAN DE CONNEXION
+========================= -->
+
+<div id="loginScreen">
+
+    <div class="login-card">
+
+        <h1>👨‍👩‍👧‍👦 Points des enfants</h1>
+
+        <div id="loginError"></div>
+
+        <label for="loginEmail">
+            Adresse e-mail
+        </label>
+
+        <input
+            id="loginEmail"
+            type="email"
+            autocomplete="username"
+            placeholder="Adresse e-mail">
+
+        <label for="loginPassword">
+            Mot de passe
+        </label>
+
+        <input
+            id="loginPassword"
+            type="password"
+            autocomplete="current-password"
+            placeholder="Mot de passe">
+
+        <button
+            id="loginButton"
+            onclick="login()">
+
+            🔐 Se connecter
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     APPLICATION
+========================= -->
+
+<div id="app">
+
 <header>
+
+    <button
+        id="logoutButton"
+        onclick="logout()">
+
+        Déconnexion
+
+    </button>
+
     <h1>👨‍👩‍👧‍👦 Points des enfants</h1>
-    <div id="connectionStatus">Connexion à la base de données…</div>
+
+    <div id="connectionStatus">
+        Connexion…
+    </div>
+
 </header>
 
+
 <nav>
-    <button id="nav-recap" onclick="showPage('recap')">📊 Récap</button>
-    <button id="nav-leo" onclick="showPage('leo')">👦 Léo</button>
-    <button id="nav-cloe" onclick="showPage('cloe')">👧 Cloé</button>
-    <button id="nav-cagnotte" onclick="showPage('cagnotte')">💰 Cagnotte</button>
+
+    <button
+        id="nav-recap"
+        onclick="showPage('recap')">
+
+        📊 Récap
+
+    </button>
+
+    <button
+        id="nav-leo"
+        onclick="showPage('leo')">
+
+        👦 Léo
+
+    </button>
+
+    <button
+        id="nav-cloe"
+        onclick="showPage('cloe')">
+
+        👧 Cloé
+
+    </button>
+
+    <button
+        id="nav-cagnotte"
+        onclick="showPage('cagnotte')">
+
+        💰 Cagnotte
+
+    </button>
+
 </nav>
+
 
 <main>
 
-<section id="page-recap" class="page active">
+<!-- =========================
+     RÉCAP
+========================= -->
+
+<section
+    id="page-recap"
+    class="page active">
 
     <div class="card">
-        <h2>📊 Récapitulatif de la semaine</h2>
 
-        <div id="recapContent" class="loading">
+        <h2>
+            📊 Récapitulatif de la semaine
+        </h2>
+
+        <div
+            id="recapContent"
+            class="loading">
+
             Chargement…
+
         </div>
+
     </div>
 
 </section>
 
 
-<section id="page-leo" class="page">
+<!-- =========================
+     LÉO
+========================= -->
+
+<section
+    id="page-leo"
+    class="page">
 
     <div class="card">
 
         <h2>👦 Léo</h2>
 
-        <div class="balance" id="balance-leo">0 pt</div>
-        <div class="money" id="money-leo">0,00 €</div>
+        <div
+            class="balance"
+            id="balance-leo">
 
-        <button class="undo-btn" onclick="undoAction('leo')">
+            0 pt
+
+        </div>
+
+        <div
+            class="money"
+            id="money-leo">
+
+            0,00 €
+
+        </div>
+
+        <button
+            class="undo-btn"
+            onclick="undoAction('leo')">
+
             ↩️ Annuler la dernière action de Léo
+
         </button>
 
-        <div class="section-title">✅ Récompenses</div>
+
+        <div class="section-title">
+            ✅ Récompenses
+        </div>
 
         <div class="action-grid">
 
-            <button class="action-btn reward"
+            <button
+                class="action-btn reward"
                 onclick="addAction('leo','Faire son lit',1,'reward')">
-                🛏️ Faire son lit<br>+1 pt
+
+                🛏️ Faire son lit<br>
+                +1 pt
+
             </button>
 
-            <button class="action-btn reward"
+
+            <button
+                class="action-btn reward"
                 onclick="addAction('leo','Ranger et nettoyer après son déjeuner',1,'reward')">
-                🍽️ Ranger et nettoyer après son déjeuner<br>+1 pt
+
+                🍽️ Ranger et nettoyer après son déjeuner<br>
+                +1 pt
+
             </button>
 
-            <button class="action-btn reward"
+
+            <button
+                class="action-btn reward"
                 onclick="addAction('leo','Ranger la table et la nettoyer',1,'reward')">
-                🧽 Ranger la table et la nettoyer<br>+1 pt
+
+                🧽 Ranger la table et la nettoyer<br>
+                +1 pt
+
             </button>
 
-            <button class="action-btn reward"
+
+            <button
+                class="action-btn reward"
                 onclick="addAction('leo','Ranger sa chambre simplement',2,'reward')">
-                🧹 Ranger sa chambre simplement<br>+2 pts
+
+                🧹 Ranger sa chambre simplement<br>
+                +2 pts
+
             </button>
 
-            <button class="action-btn reward"
+
+            <button
+                class="action-btn reward"
                 onclick="addAction('leo','Ranger sa chambre de manière irréprochable',10,'reward')">
-                ✨ Chambre irréprochable<br>+10 pts
+
+                ✨ Chambre irréprochable<br>
+                +10 pts
+
             </button>
 
-            <button class="action-btn reward"
+
+            <button
+                class="action-btn reward"
                 onclick="addAction('leo','Ramasser les crottes',20,'reward')">
-                💩 Ramasser les crottes<br>+20 pts
+
+                💩 Ramasser les crottes<br>
+                +20 pts
+
             </button>
 
-            <button class="action-btn reward"
+
+            <button
+                class="action-btn reward"
                 onclick="addAction('leo','Passer l’aspirateur correctement sur 1 niveau',5,'reward')">
-                🧹 Aspirateur sur 1 niveau<br>+5 pts
+
+                🧹 Aspirateur sur 1 niveau<br>
+                +5 pts
+
             </button>
 
         </div>
 
-        <div class="section-title">❌ Punitions</div>
+
+        <div class="section-title">
+            ❌ Punitions
+        </div>
 
         <div class="action-grid">
 
-            <button class="action-btn punishment"
+            <button
+                class="action-btn punishment"
                 onclick="addAction('leo','Linge qui traîne',-1,'punishment')">
-                👕 Linge qui traîne<br>-1 pt
+
+                👕 Linge qui traîne<br>
+                -1 pt
+
             </button>
 
-            <button class="action-btn punishment"
+
+            <button
+                class="action-btn punishment"
                 onclick="addAction('leo','Chaussures qui traînent',-1,'punishment')">
-                👟 Chaussures qui traînent<br>-1 pt
+
+                👟 Chaussures qui traînent<br>
+                -1 pt
+
             </button>
 
-            <button class="action-btn punishment"
+
+            <button
+                class="action-btn punishment"
                 onclick="addAction('leo','Chamaillerie',-1,'punishment')">
-                😤 Chamaillerie<br>-1 pt
+
+                😤 Chamaillerie<br>
+                -1 pt
+
             </button>
 
-            <button class="action-btn punishment"
+
+            <button
+                class="action-btn punishment"
                 onclick="addAction('leo','Bagarre',-5,'punishment')">
-                🤼 Bagarre<br>-5 pts
+
+                🤼 Bagarre<br>
+                -5 pts
+
             </button>
 
-            <button class="action-btn punishment"
+
+            <button
+                class="action-btn punishment"
                 onclick="addAction('leo','Gros mots',-5,'punishment')">
-                🤬 Gros mots<br>-5 pts
+
+                🤬 Gros mots<br>
+                -5 pts
+
             </button>
 
-            <button class="action-btn punishment"
+
+            <button
+                class="action-btn punishment"
                 onclick="addAction('leo','SDB sale',-10,'punishment')">
-                🚿 SDB sale<br>-10 pts
+
+                🚿 SDB sale<br>
+                -10 pts
+
             </button>
 
         </div>
@@ -395,92 +695,184 @@ main {
 </section>
 
 
-<section id="page-cloe" class="page">
+<!-- =========================
+     CLOÉ
+========================= -->
+
+<section
+    id="page-cloe"
+    class="page">
 
     <div class="card">
 
         <h2>👧 Cloé</h2>
 
-        <div class="balance" id="balance-cloe">0 pt</div>
-        <div class="money" id="money-cloe">0,00 €</div>
+        <div
+            class="balance"
+            id="balance-cloe">
 
-        <button class="undo-btn" onclick="undoAction('cloe')">
+            0 pt
+
+        </div>
+
+        <div
+            class="money"
+            id="money-cloe">
+
+            0,00 €
+
+        </div>
+
+        <button
+            class="undo-btn"
+            onclick="undoAction('cloe')">
+
             ↩️ Annuler la dernière action de Cloé
+
         </button>
 
-        <div class="section-title">✅ Récompenses</div>
+
+        <div class="section-title">
+            ✅ Récompenses
+        </div>
 
         <div class="action-grid">
 
-            <button class="action-btn reward"
+            <button
+                class="action-btn reward"
                 onclick="addAction('cloe','Faire son lit',1,'reward')">
-                🛏️ Faire son lit<br>+1 pt
+
+                🛏️ Faire son lit<br>
+                +1 pt
+
             </button>
 
-            <button class="action-btn reward"
+
+            <button
+                class="action-btn reward"
                 onclick="addAction('cloe','Ranger et nettoyer après son déjeuner',1,'reward')">
-                🍽️ Ranger et nettoyer après son déjeuner<br>+1 pt
+
+                🍽️ Ranger et nettoyer après son déjeuner<br>
+                +1 pt
+
             </button>
 
-            <button class="action-btn reward"
+
+            <button
+                class="action-btn reward"
                 onclick="addAction('cloe','Ranger la table et la nettoyer',1,'reward')">
-                🧽 Ranger la table et la nettoyer<br>+1 pt
+
+                🧽 Ranger la table et la nettoyer<br>
+                +1 pt
+
             </button>
 
-            <button class="action-btn reward"
+
+            <button
+                class="action-btn reward"
                 onclick="addAction('cloe','Ranger sa chambre simplement',2,'reward')">
-                🧹 Ranger sa chambre simplement<br>+2 pts
+
+                🧹 Ranger sa chambre simplement<br>
+                +2 pts
+
             </button>
 
-            <button class="action-btn reward"
+
+            <button
+                class="action-btn reward"
                 onclick="addAction('cloe','Ranger sa chambre de manière irréprochable',10,'reward')">
-                ✨ Chambre irréprochable<br>+10 pts
+
+                ✨ Chambre irréprochable<br>
+                +10 pts
+
             </button>
 
-            <button class="action-btn reward"
+
+            <button
+                class="action-btn reward"
                 onclick="addAction('cloe','Ramasser les crottes',20,'reward')">
-                💩 Ramasser les crottes<br>+20 pts
+
+                💩 Ramasser les crottes<br>
+                +20 pts
+
             </button>
 
-            <button class="action-btn reward"
+
+            <button
+                class="action-btn reward"
                 onclick="addAction('cloe','Passer l’aspirateur correctement sur 1 niveau',5,'reward')">
-                🧹 Aspirateur sur 1 niveau<br>+5 pts
+
+                🧹 Aspirateur sur 1 niveau<br>
+                +5 pts
+
             </button>
 
         </div>
 
-        <div class="section-title">❌ Punitions</div>
+
+        <div class="section-title">
+            ❌ Punitions
+        </div>
 
         <div class="action-grid">
 
-            <button class="action-btn punishment"
+            <button
+                class="action-btn punishment"
                 onclick="addAction('cloe','Linge qui traîne',-1,'punishment')">
-                👕 Linge qui traîne<br>-1 pt
+
+                👕 Linge qui traîne<br>
+                -1 pt
+
             </button>
 
-            <button class="action-btn punishment"
+
+            <button
+                class="action-btn punishment"
                 onclick="addAction('cloe','Chaussures qui traînent',-1,'punishment')">
-                👟 Chaussures qui traînent<br>-1 pt
+
+                👟 Chaussures qui traînent<br>
+                -1 pt
+
             </button>
 
-            <button class="action-btn punishment"
+
+            <button
+                class="action-btn punishment"
                 onclick="addAction('cloe','Chamaillerie',-1,'punishment')">
-                😤 Chamaillerie<br>-1 pt
+
+                😤 Chamaillerie<br>
+                -1 pt
+
             </button>
 
-            <button class="action-btn punishment"
+
+            <button
+                class="action-btn punishment"
                 onclick="addAction('cloe','Bagarre',-5,'punishment')">
-                🤼 Bagarre<br>-5 pts
+
+                🤼 Bagarre<br>
+                -5 pts
+
             </button>
 
-            <button class="action-btn punishment"
+
+            <button
+                class="action-btn punishment"
                 onclick="addAction('cloe','Gros mots',-5,'punishment')">
-                🤬 Gros mots<br>-5 pts
+
+                🤬 Gros mots<br>
+                -5 pts
+
             </button>
 
-            <button class="action-btn punishment"
+
+            <button
+                class="action-btn punishment"
                 onclick="addAction('cloe','SDB sale',-10,'punishment')">
-                🚿 SDB sale<br>-10 pts
+
+                🚿 SDB sale<br>
+                -10 pts
+
             </button>
 
         </div>
@@ -490,7 +882,13 @@ main {
 </section>
 
 
-<section id="page-cagnotte" class="page">
+<!-- =========================
+     CAGNOTTE
+========================= -->
+
+<section
+    id="page-cagnotte"
+    class="page">
 
     <div class="card">
 
@@ -499,27 +897,60 @@ main {
         <div class="summary-grid">
 
             <div class="stat">
-                <strong id="cagnotteLeo">0 pt</strong>
-                <span>Léo</span>
+
+                <strong id="cagnotteLeo">
+                    0 pt
+                </strong>
+
+                <span>
+                    Léo
+                </span>
+
             </div>
 
+
             <div class="stat">
-                <strong id="cagnotteCloe">0 pt</strong>
-                <span>Cloé</span>
+
+                <strong id="cagnotteCloe">
+                    0 pt
+                </strong>
+
+                <span>
+                    Cloé
+                </span>
+
             </div>
 
         </div>
 
-        <div class="summary-grid" style="margin-top:10px">
+
+        <div
+            class="summary-grid"
+            style="margin-top:10px">
 
             <div class="stat">
-                <strong id="eurosLeo">0,00 €</strong>
-                <span>Cagnotte Léo</span>
+
+                <strong id="eurosLeo">
+                    0,00 €
+                </strong>
+
+                <span>
+                    Cagnotte Léo
+                </span>
+
             </div>
 
+
             <div class="stat">
-                <strong id="eurosCloe">0,00 €</strong>
-                <span>Cagnotte Cloé</span>
+
+                <strong id="eurosCloe">
+                    0,00 €
+                </strong>
+
+                <span>
+                    Cagnotte Cloé
+                </span>
+
             </div>
 
         </div>
@@ -529,10 +960,15 @@ main {
 
     <div class="card withdraw">
 
-        <h2>💸 Retrait manuel</h2>
+        <h2>
+            💸 Retrait manuel
+        </h2>
 
         <p>
-            <strong>100 points = 10 €</strong><br>
+            <strong>
+                100 points = 10 €
+            </strong>
+            <br>
             Donc 1 € = 10 points.
         </p>
 
@@ -540,13 +976,21 @@ main {
             Choisir l'enfant :
         </div>
 
-        <select id="withdrawChild"
+
+        <select
+            id="withdrawChild"
             style="width:100%;padding:11px;border:1px solid #d1d5db;border-radius:9px;font-size:16px;margin-bottom:10px">
 
-            <option value="leo">Léo</option>
-            <option value="cloe">Cloé</option>
+            <option value="leo">
+                Léo
+            </option>
+
+            <option value="cloe">
+                Cloé
+            </option>
 
         </select>
+
 
         <div class="withdraw-row">
 
@@ -557,8 +1001,12 @@ main {
                 step="0.01"
                 placeholder="Montant en €">
 
-            <button onclick="retraitManuel()">
+
+            <button
+                onclick="retraitManuel()">
+
                 Retirer
+
             </button>
 
         </div>
@@ -568,6 +1016,8 @@ main {
 </section>
 
 </main>
+
+</div>
 
 
 <script>
@@ -598,45 +1048,56 @@ let data = {
     cloe: []
 };
 
-let loading = false;
-
 
 /* =========================================================
    UTILITAIRES
 ========================================================= */
 
 function escapeHtml(value) {
+
     return String(value ?? "")
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
+
 }
 
 
 function formatEuros(value) {
-    return Number(value || 0).toLocaleString("fr-FR", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    }) + " €";
+
+    return Number(value || 0)
+        .toLocaleString(
+            "fr-FR",
+            {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }
+        ) + " €";
+
 }
 
 
 function formatPoints(value) {
 
-    const n = Number(value || 0);
+    const n =
+        Number(value || 0);
 
-    return n + (
-        Math.abs(n) > 1
-            ? " pts"
-            : " pt"
-    );
+    return n +
+        (
+            Math.abs(n) > 1
+                ? " pts"
+                : " pt"
+        );
+
 }
 
 
 function eurosFromPoints(points) {
+
     return Number(points || 0) / 10;
+
 }
 
 
@@ -647,6 +1108,138 @@ function total(child) {
             sum + Number(action.points || 0),
         0
     );
+
+}
+
+
+/* =========================================================
+   CONNEXION
+========================================================= */
+
+async function login() {
+
+    const email =
+        document.getElementById(
+            "loginEmail"
+        ).value.trim();
+
+    const password =
+        document.getElementById(
+            "loginPassword"
+        ).value;
+
+    const errorBox =
+        document.getElementById(
+            "loginError"
+        );
+
+    const button =
+        document.getElementById(
+            "loginButton"
+        );
+
+
+    errorBox.style.display = "none";
+
+
+    if (!email || !password) {
+
+        errorBox.textContent =
+            "Merci de renseigner l'adresse e-mail et le mot de passe.";
+
+        errorBox.style.display =
+            "block";
+
+        return;
+    }
+
+
+    button.disabled = true;
+
+    button.textContent =
+        "⏳ Connexion…";
+
+
+    const { error } =
+        await supabaseClient.auth
+            .signInWithPassword({
+                email: email,
+                password: password
+            });
+
+
+    if (error) {
+
+        console.error(error);
+
+        errorBox.textContent =
+            "Connexion impossible : " +
+            error.message;
+
+        errorBox.style.display =
+            "block";
+
+        button.disabled = false;
+
+        button.textContent =
+            "🔐 Se connecter";
+
+        return;
+    }
+
+
+    button.disabled = false;
+
+    button.textContent =
+        "🔐 Se connecter";
+
+    showApp();
+
+}
+
+
+/* =========================================================
+   DÉCONNEXION
+========================================================= */
+
+async function logout() {
+
+    await supabaseClient.auth.signOut();
+
+    data = {
+        leo: [],
+        cloe: []
+    };
+
+    document.getElementById(
+        "app"
+    ).style.display = "none";
+
+    document.getElementById(
+        "loginScreen"
+    ).style.display = "flex";
+
+}
+
+
+/* =========================================================
+   AFFICHER L'APPLICATION
+========================================================= */
+
+async function showApp() {
+
+    document.getElementById(
+        "loginScreen"
+    ).style.display = "none";
+
+    document.getElementById(
+        "app"
+    ).style.display = "block";
+
+    showPage("recap");
+
+    await loadData();
+
 }
 
 
@@ -661,13 +1254,21 @@ async function loadData() {
     ).textContent =
         "⏳ Synchronisation…";
 
-    const { data: rows, error } =
+
+    const {
+        data: rows,
+        error
+    } =
         await supabaseClient
             .from("actions")
             .select("*")
-            .order("id", {
-                ascending: true
-            });
+            .order(
+                "id",
+                {
+                    ascending: true
+                }
+            );
+
 
     if (error) {
 
@@ -678,21 +1279,15 @@ async function loadData() {
         ).textContent =
             "❌ Erreur de connexion";
 
-        document.getElementById(
-            "recapContent"
-        ).innerHTML =
-            `<div class="error">
-                Impossible de charger les données Supabase.<br>
-                ${escapeHtml(error.message)}
-            </div>`;
-
         return;
     }
+
 
     data = {
         leo: [],
         cloe: []
     };
+
 
     for (const row of rows || []) {
 
@@ -701,26 +1296,41 @@ async function loadData() {
                 ? "cloe"
                 : "leo";
 
+
         data[child].push({
+
             id: row.id,
-            created_at: row.created_at,
-            name: row.name,
-            points: Number(row.points),
-            type: row.type
+
+            created_at:
+                row.created_at,
+
+            name:
+                row.name,
+
+            points:
+                Number(row.points),
+
+            type:
+                row.type
+
         });
+
     }
+
 
     document.getElementById(
         "connectionStatus"
     ).textContent =
         "🟢 Synchronisé";
 
+
     update();
+
 }
 
 
 /* =========================================================
-   AJOUT D'UNE ACTION
+   AJOUT ACTION
 ========================================================= */
 
 async function addAction(
@@ -730,17 +1340,30 @@ async function addAction(
     type
 ) {
 
-    const { data: inserted, error } =
+    const {
+        data: inserted,
+        error
+    } =
         await supabaseClient
             .from("actions")
             .insert({
-                child: child,
-                name: name,
-                points: points,
-                type: type
+
+                child:
+                    child,
+
+                name:
+                    name,
+
+                points:
+                    points,
+
+                type:
+                    type
+
             })
             .select()
             .single();
+
 
     if (error) {
 
@@ -754,25 +1377,41 @@ async function addAction(
         return;
     }
 
+
     data[child].push({
-        id: inserted.id,
-        created_at: inserted.created_at,
-        name: inserted.name,
-        points: Number(inserted.points),
-        type: inserted.type
+
+        id:
+            inserted.id,
+
+        created_at:
+            inserted.created_at,
+
+        name:
+            inserted.name,
+
+        points:
+            Number(inserted.points),
+
+        type:
+            inserted.type
+
     });
 
+
     update();
+
 }
 
 
 /* =========================================================
-   ANNULER LA DERNIÈRE ACTION
+   ANNULER
 ========================================================= */
 
 async function undoAction(child) {
 
-    const actions = data[child];
+    const actions =
+        data[child];
+
 
     if (!actions.length) {
 
@@ -787,6 +1426,7 @@ async function undoAction(child) {
         return;
     }
 
+
     const last =
         [...actions].sort(
             (a,b) =>
@@ -794,27 +1434,36 @@ async function undoAction(child) {
                 Number(a.id)
         )[0];
 
+
     const childName =
         child === "leo"
             ? "Léo"
             : "Cloé";
 
-    const ok = confirm(
-        `Annuler la dernière action de ${childName} ?\n\n` +
-        `${last.name} : ${
-            last.points > 0
-                ? "+"
-                : ""
-        }${last.points} pt`
-    );
+
+    const ok =
+        confirm(
+            `Annuler la dernière action de ${childName} ?\n\n` +
+            `${last.name} : ${
+                last.points > 0
+                    ? "+"
+                    : ""
+            }${last.points} pt`
+        );
+
 
     if (!ok) return;
+
 
     const { error } =
         await supabaseClient
             .from("actions")
             .delete()
-            .eq("id", last.id);
+            .eq(
+                "id",
+                last.id
+            );
+
 
     if (error) {
 
@@ -828,17 +1477,21 @@ async function undoAction(child) {
         return;
     }
 
+
     data[child] =
         data[child].filter(
-            a => a.id !== last.id
+            a =>
+                a.id !== last.id
         );
 
+
     update();
+
 }
 
 
 /* =========================================================
-   RETRAIT MANUEL
+   RETRAIT
 ========================================================= */
 
 async function retraitManuel() {
@@ -848,13 +1501,16 @@ async function retraitManuel() {
             "withdrawChild"
         ).value;
 
+
     const input =
         document.getElementById(
             "withdrawAmount"
         );
 
+
     const euros =
         Number(input.value);
+
 
     if (!euros || euros <= 0) {
 
@@ -865,11 +1521,16 @@ async function retraitManuel() {
         return;
     }
 
+
     const points =
-        Math.round(euros * 10);
+        Math.round(
+            euros * 10
+        );
+
 
     const current =
         total(child);
+
 
     if (points > current) {
 
@@ -885,20 +1546,35 @@ async function retraitManuel() {
         return;
     }
 
+
     const name =
         `Retrait manuel de ${formatEuros(euros)}`;
 
-    const { data: inserted, error } =
+
+    const {
+        data: inserted,
+        error
+    } =
         await supabaseClient
             .from("actions")
             .insert({
-                child: child,
-                name: name,
-                points: -points,
-                type: "retrait"
+
+                child:
+                    child,
+
+                name:
+                    name,
+
+                points:
+                    -points,
+
+                type:
+                    "retrait"
+
             })
             .select()
             .single();
+
 
     if (error) {
 
@@ -912,22 +1588,38 @@ async function retraitManuel() {
         return;
     }
 
+
     data[child].push({
-        id: inserted.id,
-        created_at: inserted.created_at,
-        name: inserted.name,
-        points: Number(inserted.points),
-        type: inserted.type
+
+        id:
+            inserted.id,
+
+        created_at:
+            inserted.created_at,
+
+        name:
+            inserted.name,
+
+        points:
+            Number(inserted.points),
+
+        type:
+            inserted.type
+
     });
+
 
     input.value = "";
 
+
     update();
+
 
     alert(
         `Retrait de ${formatEuros(euros)} enregistré.\n` +
         `${points} points retirés.`
     );
+
 }
 
 
@@ -937,80 +1629,123 @@ async function retraitManuel() {
 
 function localDate(date) {
 
-    const d = new Date(date);
+    const d =
+        new Date(date);
 
-    const y = d.getFullYear();
+
+    const y =
+        d.getFullYear();
+
 
     const m =
         String(
             d.getMonth() + 1
-        ).padStart(2, "0");
+        ).padStart(
+            2,
+            "0"
+        );
+
 
     const day =
         String(
             d.getDate()
-        ).padStart(2, "0");
+        ).padStart(
+            2,
+            "0"
+        );
+
 
     return `${y}-${m}-${day}`;
+
 }
 
 
 function mondayOf(date) {
 
-    const d = new Date(date);
+    const d =
+        new Date(date);
+
 
     d.setHours(
-        0,0,0,0
+        0,
+        0,
+        0,
+        0
     );
+
 
     const day =
         d.getDay();
+
 
     const diff =
         day === 0
             ? -6
             : 1 - day;
 
+
     d.setDate(
         d.getDate() + diff
     );
 
+
     return d;
+
 }
 
 
-function addDays(date, days) {
+function addDays(
+    date,
+    days
+) {
 
-    const d = new Date(date);
+    const d =
+        new Date(date);
+
 
     d.setDate(
         d.getDate() + days
     );
 
+
     return d;
+
 }
 
 
 function dateKey(date) {
+
     return localDate(date);
+
 }
 
 
 /* =========================================================
-   ACTIONS DE LA SEMAINE
+   ACTIONS SEMAINE
 ========================================================= */
 
 function getWeekActions(child) {
 
     const monday =
-        mondayOf(new Date());
+        mondayOf(
+            new Date()
+        );
+
 
     const sunday =
-        addDays(monday, 6);
+        addDays(
+            monday,
+            6
+        );
+
 
     sunday.setHours(
-        23,59,59,999
+        23,
+        59,
+        59,
+        999
     );
+
 
     return data[child].filter(
         action => {
@@ -1020,50 +1755,65 @@ function getWeekActions(child) {
                     action.created_at
                 );
 
+
             return (
                 d >= monday &&
                 d <= sunday
             );
+
         }
     );
+
 }
 
 
 /* =========================================================
-   RÉCAPITULATIF
+   RÉCAP
 ========================================================= */
 
 function buildChildWeek(child) {
 
     const actions =
-        getWeekActions(child);
+        getWeekActions(
+            child
+        );
+
 
     const weekGain =
         actions
             .filter(
-                a => Number(a.points) > 0
+                a =>
+                    Number(a.points) > 0
             )
             .reduce(
                 (s,a) =>
-                    s + Number(a.points),
+                    s +
+                    Number(a.points),
                 0
             );
+
 
     const weekLoss =
         actions
             .filter(
-                a => Number(a.points) < 0
+                a =>
+                    Number(a.points) < 0
             )
             .reduce(
                 (s,a) =>
-                    s + Number(a.points),
+                    s +
+                    Number(a.points),
                 0
             );
 
+
     const weekTotal =
-        weekGain + weekLoss;
+        weekGain +
+        weekLoss;
+
 
     const byDay = {};
+
 
     actions.forEach(
         action => {
@@ -1073,26 +1823,36 @@ function buildChildWeek(child) {
                     action.created_at
                 );
 
+
             if (!byDay[key]) {
+
                 byDay[key] = [];
+
             }
+
 
             byDay[key].push(
                 action
             );
+
         }
     );
 
+
     let html = `
+
         <div class="card">
 
             <h3>
+
                 ${
                     child === "leo"
                         ? "👦 Léo"
                         : "👧 Cloé"
                 }
+
             </h3>
+
 
             <div class="summary-grid">
 
@@ -1108,6 +1868,7 @@ function buildChildWeek(child) {
 
                 </div>
 
+
                 <div class="stat">
 
                     <strong class="negative">
@@ -1122,16 +1883,19 @@ function buildChildWeek(child) {
 
             </div>
 
+
             <div
                 class="stat"
                 style="margin-top:10px">
 
                 <strong>
+
                     ${
                         weekTotal >= 0
                             ? "+"
                             : ""
                     }${weekTotal}
+
                 </strong>
 
                 <span>
@@ -1141,10 +1905,15 @@ function buildChildWeek(child) {
             </div>
 
         </div>
+
     `;
 
+
     const monday =
-        mondayOf(new Date());
+        mondayOf(
+            new Date()
+        );
+
 
     for (
         let i = 0;
@@ -1153,27 +1922,37 @@ function buildChildWeek(child) {
     ) {
 
         const d =
-            addDays(monday, i);
+            addDays(
+                monday,
+                i
+            );
+
 
         const key =
             dateKey(d);
 
+
         const dayActions =
             byDay[key] || [];
+
 
         const dayTotal =
             dayActions.reduce(
                 (s,a) =>
-                    s + Number(a.points),
+                    s +
+                    Number(a.points),
                 0
             );
+
 
         const sign =
             dayTotal > 0
                 ? "+"
                 : "";
 
+
         html += `
+
             <div class="day-row">
 
                 <div
@@ -1186,28 +1965,36 @@ function buildChildWeek(child) {
                     <span>
 
                         <strong>
+
                             ${d.toLocaleDateString(
                                 "fr-FR",
                                 {
-                                    weekday:"long",
-                                    day:"numeric",
-                                    month:"long"
+                                    weekday:
+                                        "long",
+                                    day:
+                                        "numeric",
+                                    month:
+                                        "long"
                                 }
                             )}
+
                         </strong>
 
                         <br>
 
                         <small>
+
                             ${dayActions.length}
                             action${
                                 dayActions.length > 1
                                     ? "s"
                                     : ""
                             }
+
                         </small>
 
                     </span>
+
 
                     <strong
                         class="${
@@ -1224,6 +2011,7 @@ function buildChildWeek(child) {
 
                 </div>
 
+
                 <div
                     id="day-${child}-${key}"
                     class="day-actions">
@@ -1231,75 +2019,99 @@ function buildChildWeek(child) {
                     ${
                         dayActions.length
 
-                            ? dayActions
-                                .sort(
-                                    (a,b) =>
-                                        new Date(
-                                            a.created_at
-                                        ) -
-                                        new Date(
-                                            b.created_at
-                                        )
-                                )
-                                .map(
-                                    a => `
-                                        <div class="action-history">
+                        ?
 
-                                            <span>
-                                                ${escapeHtml(
-                                                    a.name
-                                                )}
-                                            </span>
+                        dayActions
+                            .sort(
+                                (a,b) =>
+                                    new Date(
+                                        a.created_at
+                                    ) -
+                                    new Date(
+                                        b.created_at
+                                    )
+                            )
+                            .map(
+                                a => `
 
-                                            <strong
-                                                class="${
-                                                    a.points >= 0
-                                                        ? "positive"
-                                                        : "negative"
-                                                }">
+                                    <div
+                                        class="action-history">
 
-                                                ${
-                                                    a.points > 0
-                                                        ? "+"
-                                                        : ""
-                                                }${a.points} pt
+                                        <span>
 
-                                            </strong>
+                                            ${escapeHtml(
+                                                a.name
+                                            )}
 
-                                        </div>
-                                    `
-                                )
-                                .join("")
+                                        </span>
 
-                            : `
-                                <div class="empty">
-                                    Aucune action
-                                </div>
-                            `
+
+                                        <strong
+                                            class="${
+                                                a.points >= 0
+                                                    ? "positive"
+                                                    : "negative"
+                                            }">
+
+                                            ${
+                                                a.points > 0
+                                                    ? "+"
+                                                    : ""
+                                            }${a.points} pt
+
+                                        </strong>
+
+                                    </div>
+
+                                `
+                            )
+                            .join("")
+
+                        :
+
+                        `
+
+                            <div class="empty">
+                                Aucune action
+                            </div>
+
+                        `
                     }
 
                 </div>
 
             </div>
+
         `;
+
     }
 
+
     return html;
+
 }
 
 
 function buildRecap() {
 
     const leo =
-        buildChildWeek("leo");
+        buildChildWeek(
+            "leo"
+        );
+
 
     const cloe =
-        buildChildWeek("cloe");
+        buildChildWeek(
+            "cloe"
+        );
+
 
     document.getElementById(
         "recapContent"
     ).innerHTML =
-        leo + cloe;
+        leo +
+        cloe;
+
 }
 
 
@@ -1313,11 +2125,15 @@ function toggleDay(
             `day-${child}-${key}`
         );
 
+
     if (element) {
+
         element.classList.toggle(
             "open"
         );
+
     }
+
 }
 
 
@@ -1335,21 +2151,30 @@ function updateBalances() {
         const points =
             total(child);
 
+
         const euros =
             eurosFromPoints(
                 points
             );
 
+
         document.getElementById(
             `balance-${child}`
         ).textContent =
-            formatPoints(points);
+            formatPoints(
+                points
+            );
+
 
         document.getElementById(
             `money-${child}`
         ).textContent =
-            formatEuros(euros);
+            formatEuros(
+                euros
+            );
+
     }
+
 
     document.getElementById(
         "cagnotteLeo"
@@ -1358,12 +2183,14 @@ function updateBalances() {
             total("leo")
         );
 
+
     document.getElementById(
         "cagnotteCloe"
     ).textContent =
         formatPoints(
             total("cloe")
         );
+
 
     document.getElementById(
         "eurosLeo"
@@ -1374,6 +2201,7 @@ function updateBalances() {
             )
         );
 
+
     document.getElementById(
         "eurosCloe"
     ).textContent =
@@ -1382,13 +2210,16 @@ function updateBalances() {
                 total("cloe")
             )
         );
+
 }
 
 
 function update() {
 
     updateBalances();
+
     buildRecap();
+
 }
 
 
@@ -1407,6 +2238,7 @@ function showPage(page) {
                 )
         );
 
+
     document
         .querySelectorAll("nav button")
         .forEach(
@@ -1416,6 +2248,7 @@ function showPage(page) {
                 )
         );
 
+
     document
         .getElementById(
             `page-${page}`
@@ -1423,6 +2256,7 @@ function showPage(page) {
         .classList.add(
             "active"
         );
+
 
     document
         .getElementById(
@@ -1432,18 +2266,26 @@ function showPage(page) {
             "active"
         );
 
-    if (page === "recap") {
+
+    if (
+        page === "recap"
+    ) {
+
         buildRecap();
+
     }
+
 }
 
 
 /* =========================================================
-   SUPABASE REALTIME
+   REALTIME
 ========================================================= */
 
 supabaseClient
-    .channel("actions-realtime")
+    .channel(
+        "actions-realtime"
+    )
     .on(
         "postgres_changes",
         {
@@ -1459,6 +2301,7 @@ supabaseClient
             );
 
             loadData();
+
         }
     )
     .subscribe(
@@ -1474,12 +2317,89 @@ supabaseClient
 
 
 /* =========================================================
-   INITIALISATION
+   SESSION AU DÉMARRAGE
 ========================================================= */
 
-showPage("recap");
+async function checkSession() {
 
-loadData();
+    const {
+        data: {
+            session
+        }
+    } =
+        await supabaseClient.auth
+            .getSession();
+
+
+    if (session) {
+
+        showApp();
+
+    } else {
+
+        document.getElementById(
+            "loginScreen"
+        ).style.display =
+            "flex";
+
+        document.getElementById(
+            "app"
+        ).style.display =
+            "none";
+
+    }
+
+}
+
+
+/* =========================================================
+   SURVEILLER LA SESSION
+========================================================= */
+
+supabaseClient.auth.onAuthStateChange(
+    (event, session) => {
+
+        console.log(
+            "Auth:",
+            event
+        );
+
+
+        if (
+            session &&
+            event === "SIGNED_IN"
+        ) {
+
+            showApp();
+
+        }
+
+
+        if (
+            event === "SIGNED_OUT"
+        ) {
+
+            document.getElementById(
+                "loginScreen"
+            ).style.display =
+                "flex";
+
+            document.getElementById(
+                "app"
+            ).style.display =
+                "none";
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   DÉMARRAGE
+========================================================= */
+
+checkSession();
 
 </script>
 
