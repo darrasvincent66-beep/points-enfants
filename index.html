@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Points Enfants</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f2f5f7;
+      color: #222;
+    }
+
+    header {
+      background: #ffffff;
+      padding: 18px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 26px;
+    }
+
+    nav {
+      display: flex;
+      background: white;
+      border-bottom: 1px solid #ddd;
+      overflow-x: auto;
+    }
+
+    nav button {
+      flex: 1;
+      min-width: 100px;
+      padding: 15px 8px;
+      border: none;
+      background: white;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    nav button.active {
+      font-weight: bold;
+      border-bottom: 4px solid #4caf50;
+    }
+
+    .page {
+      display: none;
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .solde {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .solde .points {
+      font-size: 42px;
+      font-weight: bold;
+    }
+
+    .solde .euros {
+      font-size: 22px;
+      margin-top: 5px;
+    }
+
+    h2 {
+      margin-top: 10px;
+    }
+
+    .section {
+      background: white;
+      border-radius: 15px;
+      padding: 18px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .boutons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+
+    .action {
+      border: none;
+      border-radius: 12px;
+      padding: 18px 12px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      min-height: 75px;
+    }
+
+    .bon {
+      background: #b9e8c0;
+    }
+
+    .bon:hover {
+      background: #9bdca5;
+    }
+
+    .mauvais {
+      background: #e8a6a6;
+    }
+
+    .mauvais:hover {
+      background: #dc8888;
+    }
+
+    .recap-card {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      text-align: center;
+    }
+
+    .stat {
+      padding: 12px;
+      border-radius: 10px;
+      background: #f2f2f2;
+    }
+
+    .gagne {
+      color: #16852a;
+      font-weight: bold;
+    }
+
+    .perdu {
+      color: #c62828;
+      font-weight: bold;
+    }
+
+    .tableau {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    .tableau th,
+    .tableau td {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+    }
+
+    .tableau th {
+      background: #f5f5f5;
+    }
+
+    .cagnotte {
+      font-size: 32px;
+      font-weight: bold;
+      text-align: center;
+      margin: 15px;
+    }
+
+    @media (max-width: 600px) {
+      .page {
+        padding: 12px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .boutons {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .action {
+        font-size: 14px;
+        padding: 14px 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>⭐ Points Enfants</h1>
+</header>
+
+<nav>
+  <button class="active" onclick="afficherPage('recap', this)">📊 Récap</button>
+  <button onclick="afficherPage('leo', this)">👦 Léo</button>
+  <button onclick="afficherPage('chloe', this)">👧 Chloé</button>
+  <button onclick="afficherPage('cagnotte', this)">💰 Cagnotte</button>
+</nav>
+
+<!-- PAGE RÉCAP -->
+<div id="recap" class="page active">
+  <h2>📊 Récapitulatif</h2>
+
+  <div class="recap-card">
+    <h2>👦 Léo</h2>
+
+    <div class="stats">
+      <div class="stat">
+        <div>🟢 Gagnés</div>
+        <div class="gagne">0 pts</div>
+      </div>
+
+      <div class="stat">
+        <div>🔴 Perdus</div>
+        <div class="perdu">0 pts</div>
+      </div>
+
+      <div class="stat">
+        <div>⚖️ Solde</div>
+        <div>0 pts</div>
+      </div>
+    </div>
+
+    <h3>Détail de la semaine</h3>
+
+    <table class="tableau">
+      <tr>
+        <th>Jour</th>
+        <th>🟢 Gagnés</th>
+        <th>🔴 Perdus</th>
+        <th>Solde</th>
+      </tr>
+      <tr>
+        <td>Lundi</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>Mardi</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>Mercredi</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>Jeudi</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>Vendredi</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>Samedi</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>Dimanche</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="recap-card">
+    <h2>👧 Chloé</h2>
+
+    <div class="stats">
+      <div class="stat">
+        <div>🟢 Gagnés</div>
+        <div class="gagne">0 pts</div>
+      </div>
+
+      <div class="stat">
+        <div>🔴 Perdus</div>
+        <div class="perdu">0 pts</div>
+      </div>
+
+      <div class="stat">
+        <div>⚖️ Solde</div>
+        <div>0 pts</div>
+      </div>
+    </div>
+
+    <h3>Détail de la semaine</h3>
+
+    <table class="tableau">
+      <tr>
+        <th>Jour</th>
+        <th>🟢 Gagnés</th>
+        <th>🔴 Perdus</th>
+        <th>Solde</th>
+      </tr>
+      <tr><td>Lundi</td><td>0</td><td>0</td><td>0</td></tr>
+      <tr><td>Mardi</td><td>0</td><td>0</td><td>0</td></tr>
+      <tr><td>Mercredi</td><td>0</td><td>0</td><td>0</td></tr>
+      <tr><td>Jeudi</td><td>0</td><td>0</td><td>0</td></tr>
+      <tr><td>Vendredi</td><td>0</td><td>0</td><td>0</td></tr>
+      <tr><td>Samedi</td><td>0</td><td>0</td><td>0</td></tr>
+      <tr><td>Dimanche</td><td>0</td><td>0</td><td>0</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- PAGE LÉO -->
+<div id="leo" class="page">
+  <h2>👦 Léo</h2>
+
+  <div class="solde">
+    <div>Solde actuel</div>
+    <div class="points" id="pointsLeo">0 pts</div>
+    <div class="euros" id="eurosLeo">0,00 €</div>
+  </div>
+
+  <div class="section">
+    <h2>🟢 Récompenses</h2>
+
+    <div class="boutons">
+      <button class="action bon" onclick="ajouterPoints('leo', 1)">
+        Faire son lit<br>+1
+      </button>
+
+      <button class="action bon" onclick="ajouterPoints('leo', 1)">
+        Ranger et nettoyer<br>après son déjeuner<br>+1
+      </button>
+
+      <button class="action bon" onclick="ajouterPoints('leo', 1)">
+        Ranger la table<br>et la nettoyer<br>+1
+      </button>
+
+      <button class="action bon" onclick="ajouterPoints('leo', 10)">
+        Chambre irréprochable<br>+10
+      </button>
+
+      <button class="action bon" onclick="ajouterPoints('leo', 2)">
+        Ranger sa chambre<br>+2
+      </button>
+
+      <button class="action bon" onclick="ajouterPoints('leo', 20)">
+        Ramasser les crottes<br>+20
+      </button>
+
+      <button class="action bon" onclick="ajouterPoints('leo', 5)">
+        Aspirateur correctement<br>sur 1 niveau<br>+5
+      </button>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>🔴 Punitions</h2>
+
+    <div class="boutons">
+      <button class="action mauvais" onclick="ajouterPoints('leo', -1)">
+        Linge qui traîne<br>-1
+      </button>
+
+      <button class="action mauvais" onclick="ajouterPoints('leo', -1)">
+        Chaussures qui traînent<br>-1
+      </button>
+
+      <button class="action mauvais" onclick="ajouterPoints('leo', -1)">
+        Chamaillerie<br>-1
+      </button>
+
+      <button class="action mauvais" onclick="ajouterPoints('leo', -5)">
+        Bagarre<br>-5
+      </button>
+
+      <button class="action mauvais" onclick="ajouterPoints('leo', -5)">
+        Gros mots<br>-5
+      </button>
+
+      <button class="action mauvais" onclick="ajouterPoints('leo', -10)">
+        SDB sale<br>-10
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE CHLOÉ -->
+<div id="chloe" class="page">
+  <h2>👧 Chloé</h2>
+
+  <div class="solde">
+    <div>Solde actuel</div>
+    <div class="points" id="pointsChloe">0 pts</div>
+    <div class="euros" id="eurosChloe">0,00 €</div>
+  </div>
+
+  <div class="section">
+    <h2>🟢 Récompenses</h2>
+
+    <div class="boutons">
+      <button class="action bon" onclick="ajouterPoints('chloe', 1)">Faire son lit<br>+1</button>
+      <button class="action bon" onclick="ajouterPoints('chloe', 1)">Ranger après son déjeuner<br>+1</button>
+      <button class="action bon" onclick="ajouterPoints('chloe', 1)">Ranger la table<br>+1</button>
+      <button class="action bon" onclick="ajouterPoints('chloe', 10)">Chambre irréprochable<br>+10</button>
+      <button class="action bon" onclick="ajouterPoints('chloe', 2)">Ranger sa chambre<br>+2</button>
+      <button class="action bon" onclick="ajouterPoints('chloe', 20)">Ramasser les crottes<br>+20</button>
+      <button class="action bon" onclick="ajouterPoints('chloe', 5)">Aspirateur<br>+5</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>🔴 Punitions</h2>
+
+    <div class="boutons">
+      <button class="action mauvais" onclick="ajouterPoints('chloe', -1)">Linge qui traîne<br>-1</button>
+      <button class="action mauvais" onclick="ajouterPoints('chloe', -1)">Chaussures qui traînent<br>-1</button>
+      <button class="action mauvais" onclick="ajouterPoints('chloe', -1)">Chamaillerie<br>-1</button>
+      <button class="action mauvais" onclick="ajouterPoints('chloe', -5)">Bagarre<br>-5</button>
+      <button class="action mauvais" onclick="ajouterPoints('chloe', -5)">Gros mots<br>-5</button>
+      <button class="action mauvais" onclick="ajouterPoints('chloe', -10)">SDB sale<br>-10</button>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE CAGNOTTE -->
+<div id="cagnotte" class="page">
+  <h2>💰 Gestion de la cagnotte</h2>
+
+  <div class="section">
+    <h2>👦 Léo</h2>
+    <div class="cagnotte" id="cagnotteLeo">0,00 €</div>
+    <p style="text-align:center;">100 points = 20 €</p>
+  </div>
+
+  <div class="section">
+    <h2>👧 Chloé</h2>
+    <div class="cagnotte" id="cagnotteChloe">0,00 €</div>
+    <p style="text-align:center;">100 points = 20 €</p>
+  </div>
+</div>
+
+<script>
+  let pointsLeo = 0;
+  let pointsChloe = 0;
+
+  function afficherPoints() {
+    document.getElementById("pointsLeo").textContent =
+      pointsLeo + " pts";
+
+    document.getElementById("pointsChloe").textContent =
+      pointsChloe + " pts";
+
+    document.getElementById("eurosLeo").textContent =
+      (pointsLeo * 0.20).toFixed(2).replace(".", ",") + " €";
+
+    document.getElementById("eurosChloe").textContent =
+      (pointsChloe * 0.20).toFixed(2).replace(".", ",") + " €";
+
+    document.getElementById("cagnotteLeo").textContent =
+      (pointsLeo * 0.20).toFixed(2).replace(".", ",") + " €";
+
+    document.getElementById("cagnotteChloe").textContent =
+      (pointsChloe * 0.20).toFixed(2).replace(".", ",") + " €";
+  }
+
+  function ajouterPoints(enfant, points) {
+    if (enfant === "leo") {
+      pointsLeo += points;
+    }
+
+    if (enfant === "chloe") {
+      pointsChloe += points;
+    }
+
+    afficherPoints();
+  }
+
+  function afficherPage(page, bouton) {
+    document.querySelectorAll(".page").forEach(function(p) {
+      p.classList.remove("active");
+    });
+
+    document.getElementById(page).classList.add("active");
+
+    document.querySelectorAll("nav button").forEach(function(b) {
+      b.classList.remove("active");
+    });
+
+    bouton.classList.add("active");
+  }
+
+  afficherPoints();
+</script>
+
+</body>
+</html>
