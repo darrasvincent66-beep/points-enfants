@@ -659,7 +659,7 @@ main {
             ✅ Récompenses
         </div>
 
-        <div class="action-grid">
+        <div id="leo-reward-grid" class="action-grid">
 
             <button
                 class="action-btn reward"
@@ -746,7 +746,7 @@ main {
             ❌ Punitions
         </div>
 
-        <div class="action-grid">
+        <div id="leo-punishment-grid" class="action-grid">
 
             <button
                 class="action-btn punishment"
@@ -818,8 +818,6 @@ main {
 
         </div>
 
-        <div id="leo-custom-actions" class="action-grid"></div>
-
     </div>
 
 </section>
@@ -866,7 +864,7 @@ main {
             ✅ Récompenses
         </div>
 
-        <div class="action-grid">
+        <div id="cloe-reward-grid" class="action-grid">
 
             <button
                 class="action-btn reward"
@@ -953,7 +951,7 @@ main {
             ❌ Punitions
         </div>
 
-        <div class="action-grid">
+        <div id="cloe-punishment-grid" class="action-grid">
 
             <button
                 class="action-btn punishment"
@@ -1024,8 +1022,6 @@ main {
             </button>
 
         </div>
-
-        <div id="cloe-custom-actions" class="action-grid"></div>
 
     </div>
 
@@ -1610,36 +1606,77 @@ function addCustomAction(child, id) {
 
 function renderCustomActions() {
 
-    const leoContainer =
-        document.getElementById("leo-custom-actions");
+    const grids = {
+        leo: {
+            reward: document.getElementById("leo-reward-grid"),
+            punishment: document.getElementById("leo-punishment-grid")
+        },
+        cloe: {
+            reward: document.getElementById("cloe-reward-grid"),
+            punishment: document.getElementById("cloe-punishment-grid")
+        }
+    };
 
-    const cloeContainer =
-        document.getElementById("cloe-custom-actions");
+    // Remove only the previously generated custom buttons.
+    for (const child of ["leo", "cloe"]) {
+        for (const type of ["reward", "punishment"]) {
+
+            const grid = grids[child][type];
+
+            if (!grid) continue;
+
+            grid.querySelectorAll(".custom-action-btn")
+                .forEach(button => button.remove());
+        }
+    }
 
     const customActions = getCustomActions();
 
-    const build = child => customActions.map(a => `
-        <button
-            type="button"
-            class="action-btn ${a.type === "reward" ? "reward" : "punishment"}"
-            onclick="addCustomAction('${child}', ${Number(a.id)})">
+    for (const child of ["leo", "cloe"]) {
 
-            ${escapeHtml(a.icon)} ${escapeHtml(a.name)}<br>
-            ${Number(a.points) > 0 ? "+" : ""}${Number(a.points)}
-            ${Math.abs(Number(a.points)) > 1 ? "pts" : "pt"}
+        for (const type of ["reward", "punishment"]) {
 
-        </button>
-    `).join("");
+            const grid = grids[child][type];
 
-    if (leoContainer) {
-        leoContainer.innerHTML = build("leo");
-    }
+            if (!grid) continue;
 
-    if (cloeContainer) {
-        cloeContainer.innerHTML = build("cloe");
+            const actions = customActions.filter(
+                a => a.type === type
+            );
+
+            for (const action of actions) {
+
+                const button =
+                    document.createElement("button");
+
+                button.type = "button";
+                button.className =
+                    `action-btn custom-action-btn ${
+                        type === "reward"
+                            ? "reward"
+                            : "punishment"
+                    }`;
+
+                button.innerHTML =
+                    `${escapeHtml(action.icon)} ` +
+                    `${escapeHtml(action.name)}<br>` +
+                    `${Number(action.points) > 0 ? "+" : ""}` +
+                    `${Number(action.points)} ` +
+                    `${Math.abs(Number(action.points)) > 1 ? "pts" : "pt"}`;
+
+                button.addEventListener(
+                    "click",
+                    () => addCustomAction(
+                        child,
+                        Number(action.id)
+                    )
+                );
+
+                grid.appendChild(button);
+            }
+        }
     }
 }
-
 function renderManagedActions() {
 
     const container =
