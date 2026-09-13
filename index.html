@@ -818,10 +818,6 @@ main {
 
         </div>
 
-        <div class="section-title">
-            ⭐ Actions personnalisées
-        </div>
-
         <div id="leo-custom-actions" class="action-grid"></div>
 
     </div>
@@ -1029,10 +1025,6 @@ main {
 
         </div>
 
-        <div class="section-title">
-            ⭐ Actions personnalisées
-        </div>
-
         <div id="cloe-custom-actions" class="action-grid"></div>
 
     </div>
@@ -1224,7 +1216,7 @@ main {
                 <input
                     id="actionPoints"
                     type="number"
-                    min="1"
+                    min="0"
                     step="1"
                     placeholder="Ex. 5">
             </div>
@@ -1593,6 +1585,29 @@ async function loadActionTypes() {
     renderManagedActions();
 }
 
+function getCustomActions() {
+    return actionTypes.filter(a => Number(a.id) > 15);
+}
+
+function addCustomAction(child, id) {
+
+    const action = actionTypes.find(
+        a => Number(a.id) === Number(id)
+    );
+
+    if (!action) {
+        alert("Action personnalisée introuvable.");
+        return;
+    }
+
+    addAction(
+        child,
+        action.name,
+        Number(action.points),
+        action.type
+    );
+}
+
 function renderCustomActions() {
 
     const leoContainer =
@@ -1601,14 +1616,13 @@ function renderCustomActions() {
     const cloeContainer =
         document.getElementById("cloe-custom-actions");
 
-    const customActions = actionTypes.filter(
-        a => Number(a.id) > 15
-    );
+    const customActions = getCustomActions();
 
     const build = child => customActions.map(a => `
         <button
+            type="button"
             class="action-btn ${a.type === "reward" ? "reward" : "punishment"}"
-            onclick="addAction(${JSON.stringify(child)}, ${JSON.stringify(a.name)}, ${Number(a.points)}, ${JSON.stringify(a.type)})">
+            onclick="addCustomAction('${child}', ${Number(a.id)})">
 
             ${escapeHtml(a.icon)} ${escapeHtml(a.name)}<br>
             ${Number(a.points) > 0 ? "+" : ""}${Number(a.points)}
@@ -1617,8 +1631,13 @@ function renderCustomActions() {
         </button>
     `).join("");
 
-    if (leoContainer) leoContainer.innerHTML = build("leo");
-    if (cloeContainer) cloeContainer.innerHTML = build("cloe");
+    if (leoContainer) {
+        leoContainer.innerHTML = build("leo");
+    }
+
+    if (cloeContainer) {
+        cloeContainer.innerHTML = build("cloe");
+    }
 }
 
 function renderManagedActions() {
@@ -1628,9 +1647,7 @@ function renderManagedActions() {
 
     if (!container) return;
 
-    const customActions = actionTypes.filter(
-        a => Number(a.id) > 15
-    );
+    const customActions = getCustomActions();
 
     if (!customActions.length) {
         container.innerHTML = `
@@ -1653,13 +1670,15 @@ function renderManagedActions() {
                 <div class="managed-action-points ${
                     Number(a.points) >= 0 ? "positive" : "negative"
                 }">
-                    ${Number(a.points) > 0 ? "+" : ""}${Number(a.points)} pt
+                    ${Number(a.points) > 0 ? "+" : ""}${Number(a.points)}
+                    ${Math.abs(Number(a.points)) > 1 ? "pts" : "pt"}
                     · ${a.type === "reward" ? "Récompense" : "Punition"}
                 </div>
 
             </div>
 
             <button
+                type="button"
                 class="delete-action-btn"
                 onclick="deleteActionType(${Number(a.id)})">
 
@@ -1695,8 +1714,8 @@ async function createActionType() {
         return;
     }
 
-    if (!Number.isFinite(rawPoints) || rawPoints <= 0) {
-        alert("Merci de renseigner un nombre de points supérieur à 0.");
+    if (!Number.isFinite(rawPoints) || rawPoints < 0) {
+        alert("Merci de renseigner un nombre de points égal ou supérieur à 0.");
         return;
     }
 
