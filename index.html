@@ -8,266 +8,266 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-    * {
-        box-sizing: border-box;
-    }
+* {
+    box-sizing: border-box;
+}
 
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: #f3f4f6;
-        color: #1f2937;
-    }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f3f4f6;
+    color: #1f2937;
+}
 
-    header {
-        background: #2563eb;
-        color: white;
-        padding: 18px 15px;
-        text-align: center;
-    }
+header {
+    background: #2563eb;
+    color: white;
+    padding: 18px 15px;
+    text-align: center;
+}
 
-    header h1 {
-        margin: 0;
-        font-size: 24px;
-    }
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
 
-    #connectionStatus {
-        margin-top: 7px;
-        font-size: 13px;
-        opacity: .9;
-    }
+#connectionStatus {
+    margin-top: 7px;
+    font-size: 13px;
+    opacity: .9;
+}
 
-    nav {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 5px;
-        padding: 8px;
-        background: white;
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        box-shadow: 0 2px 8px rgba(0,0,0,.08);
-    }
+nav {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+    padding: 8px;
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
 
+nav button {
+    border: none;
+    background: #e5e7eb;
+    padding: 12px 5px;
+    border-radius: 10px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+nav button.active {
+    background: #2563eb;
+    color: white;
+}
+
+main {
+    max-width: 900px;
+    margin: auto;
+    padding: 15px;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 18px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.07);
+}
+
+.card h2 {
+    margin-top: 0;
+}
+
+.balance {
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    margin: 10px 0 3px;
+}
+
+.money {
+    text-align: center;
+    font-size: 20px;
+    color: #16a34a;
+    margin-bottom: 15px;
+}
+
+.section-title {
+    font-weight: bold;
+    margin: 18px 0 8px;
+}
+
+.action-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.action-btn {
+    border: none;
+    border-radius: 10px;
+    padding: 12px 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.reward {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.punishment {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.action-btn:active {
+    transform: scale(.98);
+}
+
+.undo-btn {
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    background: #6b7280;
+    color: white;
+    padding: 11px;
+    margin: 8px 0 18px;
+    cursor: pointer;
+}
+
+.withdraw {
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+}
+
+.withdraw-row {
+    display: flex;
+    gap: 8px;
+}
+
+.withdraw-row input {
+    flex: 1;
+    min-width: 0;
+    padding: 11px;
+    border: 1px solid #d1d5db;
+    border-radius: 9px;
+    font-size: 16px;
+}
+
+.withdraw-row button {
+    border: none;
+    background: #f97316;
+    color: white;
+    border-radius: 9px;
+    padding: 10px 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.stat {
+    background: #f9fafb;
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+}
+
+.stat strong {
+    display: block;
+    font-size: 23px;
+}
+
+.positive {
+    color: #16a34a;
+}
+
+.negative {
+    color: #dc2626;
+}
+
+.day-row {
+    border-top: 1px solid #e5e7eb;
+    padding: 11px 0;
+}
+
+.day-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.day-actions {
+    display: none;
+    margin-top: 8px;
+    padding: 8px;
+    background: #f9fafb;
+    border-radius: 8px;
+}
+
+.day-actions.open {
+    display: block;
+}
+
+.action-history {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 6px 0;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 14px;
+}
+
+.empty {
+    color: #6b7280;
+    text-align: center;
+    padding: 20px;
+}
+
+.loading {
+    text-align: center;
+    padding: 30px;
+    color: #6b7280;
+}
+
+.error {
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+}
+
+@media (max-width: 600px) {
     nav button {
-        border: none;
-        background: #e5e7eb;
-        padding: 12px 5px;
-        border-radius: 10px;
-        font-size: 13px;
-        cursor: pointer;
-    }
-
-    nav button.active {
-        background: #2563eb;
-        color: white;
-    }
-
-    main {
-        max-width: 900px;
-        margin: auto;
-        padding: 15px;
-    }
-
-    .page {
-        display: none;
-    }
-
-    .page.active {
-        display: block;
-    }
-
-    .card {
-        background: white;
-        border-radius: 15px;
-        padding: 18px;
-        margin-bottom: 15px;
-        box-shadow: 0 2px 8px rgba(0,0,0,.07);
-    }
-
-    .card h2 {
-        margin-top: 0;
-    }
-
-    .balance {
-        text-align: center;
-        font-size: 40px;
-        font-weight: bold;
-        margin: 10px 0 3px;
-    }
-
-    .money {
-        text-align: center;
-        font-size: 20px;
-        color: #16a34a;
-        margin-bottom: 15px;
-    }
-
-    .section-title {
-        font-weight: bold;
-        margin: 18px 0 8px;
+        font-size: 11px;
+        padding: 10px 2px;
     }
 
     .action-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
+        grid-template-columns: 1fr;
     }
-
-    .action-btn {
-        border: none;
-        border-radius: 10px;
-        padding: 12px 8px;
-        cursor: pointer;
-        font-size: 14px;
-        font-weight: 600;
-        text-align: left;
-    }
-
-    .reward {
-        background: #dcfce7;
-        color: #166534;
-    }
-
-    .punishment {
-        background: #fee2e2;
-        color: #991b1b;
-    }
-
-    .action-btn:active {
-        transform: scale(.98);
-    }
-
-    .undo-btn {
-        display: block;
-        width: 100%;
-        border: none;
-        border-radius: 10px;
-        background: #6b7280;
-        color: white;
-        padding: 11px;
-        margin: 8px 0 18px;
-        cursor: pointer;
-    }
-
-    .withdraw {
-        background: #fff7ed;
-        border: 1px solid #fed7aa;
-    }
-
-    .withdraw-row {
-        display: flex;
-        gap: 8px;
-    }
-
-    .withdraw-row input {
-        flex: 1;
-        min-width: 0;
-        padding: 11px;
-        border: 1px solid #d1d5db;
-        border-radius: 9px;
-        font-size: 16px;
-    }
-
-    .withdraw-row button {
-        border: none;
-        background: #f97316;
-        color: white;
-        border-radius: 9px;
-        padding: 10px 14px;
-        font-weight: bold;
-        cursor: pointer;
-    }
-
-    .summary-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
-
-    .stat {
-        background: #f9fafb;
-        border-radius: 10px;
-        padding: 12px;
-        text-align: center;
-    }
-
-    .stat strong {
-        display: block;
-        font-size: 23px;
-    }
-
-    .positive {
-        color: #16a34a;
-    }
-
-    .negative {
-        color: #dc2626;
-    }
-
-    .day-row {
-        border-top: 1px solid #e5e7eb;
-        padding: 11px 0;
-    }
-
-    .day-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        cursor: pointer;
-    }
-
-    .day-actions {
-        display: none;
-        margin-top: 8px;
-        padding: 8px;
-        background: #f9fafb;
-        border-radius: 8px;
-    }
-
-    .day-actions.open {
-        display: block;
-    }
-
-    .action-history {
-        display: flex;
-        justify-content: space-between;
-        gap: 10px;
-        padding: 6px 0;
-        border-bottom: 1px solid #e5e7eb;
-        font-size: 14px;
-    }
-
-    .empty {
-        color: #6b7280;
-        text-align: center;
-        padding: 20px;
-    }
-
-    .loading {
-        text-align: center;
-        padding: 30px;
-        color: #6b7280;
-    }
-
-    .error {
-        background: #fee2e2;
-        color: #991b1b;
-        padding: 12px;
-        border-radius: 10px;
-        margin-bottom: 12px;
-    }
-
-    @media (max-width: 600px) {
-        nav button {
-            font-size: 11px;
-            padding: 10px 2px;
-        }
-
-        .action-grid {
-            grid-template-columns: 1fr;
-        }
-    }
+}
 </style>
 </head>
 
@@ -287,10 +287,6 @@
 
 <main>
 
-<!-- =========================
-     RÉCAP
-========================= -->
-
 <section id="page-recap" class="page active">
 
     <div class="card">
@@ -303,10 +299,6 @@
 
 </section>
 
-
-<!-- =========================
-     LÉO
-========================= -->
 
 <section id="page-leo" class="page">
 
@@ -403,10 +395,6 @@
 </section>
 
 
-<!-- =========================
-     CLOÉ
-========================= -->
-
 <section id="page-cloe" class="page">
 
     <div class="card">
@@ -502,10 +490,6 @@
 </section>
 
 
-<!-- =========================
-     CAGNOTTE
-========================= -->
-
 <section id="page-cagnotte" class="page">
 
     <div class="card">
@@ -557,9 +541,11 @@
         </div>
 
         <select id="withdrawChild"
-                style="width:100%;padding:11px;border:1px solid #d1d5db;border-radius:9px;font-size:16px;margin-bottom:10px">
+            style="width:100%;padding:11px;border:1px solid #d1d5db;border-radius:9px;font-size:16px;margin-bottom:10px">
+
             <option value="leo">Léo</option>
             <option value="cloe">Cloé</option>
+
         </select>
 
         <div class="withdraw-row">
@@ -638,8 +624,14 @@ function formatEuros(value) {
 
 
 function formatPoints(value) {
+
     const n = Number(value || 0);
-    return n + (Math.abs(n) > 1 ? " pts" : " pt");
+
+    return n + (
+        Math.abs(n) > 1
+            ? " pts"
+            : " pt"
+    );
 }
 
 
@@ -649,57 +641,51 @@ function eurosFromPoints(points) {
 
 
 function total(child) {
+
     return data[child].reduce(
-        (sum, action) => sum + Number(action.points || 0),
+        (sum, action) =>
+            sum + Number(action.points || 0),
         0
     );
 }
 
 
-function gained(child) {
-    return data[child]
-        .filter(a => Number(a.points) > 0)
-        .reduce((sum, a) => sum + Number(a.points), 0);
-}
-
-
-function lost(child) {
-    return data[child]
-        .filter(a => Number(a.points) < 0)
-        .reduce((sum, a) => sum + Number(a.points), 0);
-}
-
-
 /* =========================================================
-   CHARGEMENT SUPABASE
+   CHARGEMENT DES DONNÉES
 ========================================================= */
 
 async function loadData() {
 
-    loading = true;
+    document.getElementById(
+        "connectionStatus"
+    ).textContent =
+        "⏳ Synchronisation…";
 
-    document.getElementById("connectionStatus").textContent =
-        "⏳ Chargement des données…";
-
-    const { data: rows, error } = await supabaseClient
-        .from("actions")
-        .select("*")
-        .order("id", { ascending: true });
+    const { data: rows, error } =
+        await supabaseClient
+            .from("actions")
+            .select("*")
+            .order("id", {
+                ascending: true
+            });
 
     if (error) {
 
         console.error(error);
 
-        document.getElementById("connectionStatus").textContent =
+        document.getElementById(
+            "connectionStatus"
+        ).textContent =
             "❌ Erreur de connexion";
 
-        document.getElementById("recapContent").innerHTML =
+        document.getElementById(
+            "recapContent"
+        ).innerHTML =
             `<div class="error">
                 Impossible de charger les données Supabase.<br>
                 ${escapeHtml(error.message)}
             </div>`;
 
-        loading = false;
         return;
     }
 
@@ -724,10 +710,10 @@ async function loadData() {
         });
     }
 
-    document.getElementById("connectionStatus").textContent =
-        "🟢 Données synchronisées";
-
-    loading = false;
+    document.getElementById(
+        "connectionStatus"
+    ).textContent =
+        "🟢 Synchronisé";
 
     update();
 }
@@ -737,9 +723,12 @@ async function loadData() {
    AJOUT D'UNE ACTION
 ========================================================= */
 
-async function addAction(child, name, points, type) {
-
-    if (loading) return;
+async function addAction(
+    child,
+    name,
+    points,
+    type
+) {
 
     const { data: inserted, error } =
         await supabaseClient
@@ -789,7 +778,9 @@ async function undoAction(child) {
 
         alert(
             `Aucune action à annuler pour ${
-                child === "leo" ? "Léo" : "Cloé"
+                child === "leo"
+                    ? "Léo"
+                    : "Cloé"
             }.`
         );
 
@@ -798,16 +789,22 @@ async function undoAction(child) {
 
     const last =
         [...actions].sort(
-            (a, b) => Number(b.id) - Number(a.id)
+            (a,b) =>
+                Number(b.id) -
+                Number(a.id)
         )[0];
 
     const childName =
-        child === "leo" ? "Léo" : "Cloé";
+        child === "leo"
+            ? "Léo"
+            : "Cloé";
 
     const ok = confirm(
         `Annuler la dernière action de ${childName} ?\n\n` +
         `${last.name} : ${
-            last.points > 0 ? "+" : ""
+            last.points > 0
+                ? "+"
+                : ""
         }${last.points} pt`
     );
 
@@ -847,17 +844,24 @@ async function undoAction(child) {
 async function retraitManuel() {
 
     const child =
-        document.getElementById("withdrawChild").value;
+        document.getElementById(
+            "withdrawChild"
+        ).value;
 
     const input =
-        document.getElementById("withdrawAmount");
+        document.getElementById(
+            "withdrawAmount"
+        );
 
     const euros =
         Number(input.value);
 
     if (!euros || euros <= 0) {
 
-        alert("Entre un montant en euros.");
+        alert(
+            "Entre un montant en euros."
+        );
+
         return;
     }
 
@@ -873,7 +877,9 @@ async function retraitManuel() {
             `Retrait impossible.\n\n` +
             `${child === "leo" ? "Léo" : "Cloé"} possède ` +
             `${current} points, soit ` +
-            `${formatEuros(eurosFromPoints(current))}.`
+            `${formatEuros(
+                eurosFromPoints(current)
+            )}.`
         );
 
         return;
@@ -934,24 +940,18 @@ function localDate(date) {
     const d = new Date(date);
 
     const y = d.getFullYear();
-    const m = String(d.getMonth() + 1).padStart(2, "0");
-    const day = String(d.getDate()).padStart(2, "0");
+
+    const m =
+        String(
+            d.getMonth() + 1
+        ).padStart(2, "0");
+
+    const day =
+        String(
+            d.getDate()
+        ).padStart(2, "0");
 
     return `${y}-${m}-${day}`;
-}
-
-
-function formatDate(date) {
-
-    return new Date(date).toLocaleDateString(
-        "fr-FR",
-        {
-            weekday: "long",
-            day: "numeric",
-            month: "long",
-            year: "numeric"
-        }
-    );
 }
 
 
@@ -959,16 +959,21 @@ function mondayOf(date) {
 
     const d = new Date(date);
 
-    d.setHours(0,0,0,0);
+    d.setHours(
+        0,0,0,0
+    );
 
-    const day = d.getDay();
+    const day =
+        d.getDay();
 
     const diff =
         day === 0
             ? -6
             : 1 - day;
 
-    d.setDate(d.getDate() + diff);
+    d.setDate(
+        d.getDate() + diff
+    );
 
     return d;
 }
@@ -978,20 +983,21 @@ function addDays(date, days) {
 
     const d = new Date(date);
 
-    d.setDate(d.getDate() + days);
+    d.setDate(
+        d.getDate() + days
+    );
 
     return d;
 }
 
 
 function dateKey(date) {
-
     return localDate(date);
 }
 
 
 /* =========================================================
-   SEMAINE
+   ACTIONS DE LA SEMAINE
 ========================================================= */
 
 function getWeekActions(child) {
@@ -1002,20 +1008,29 @@ function getWeekActions(child) {
     const sunday =
         addDays(monday, 6);
 
-    sunday.setHours(23,59,59,999);
+    sunday.setHours(
+        23,59,59,999
+    );
 
-    return data[child].filter(action => {
+    return data[child].filter(
+        action => {
 
-        const d =
-            new Date(action.created_at);
+            const d =
+                new Date(
+                    action.created_at
+                );
 
-        return d >= monday && d <= sunday;
-    });
+            return (
+                d >= monday &&
+                d <= sunday
+            );
+        }
+    );
 }
 
 
 /* =========================================================
-   RÉCAP
+   RÉCAPITULATIF
 ========================================================= */
 
 function buildChildWeek(child) {
@@ -1025,68 +1040,117 @@ function buildChildWeek(child) {
 
     const weekGain =
         actions
-            .filter(a => a.points > 0)
-            .reduce((s,a) => s + a.points, 0);
+            .filter(
+                a => Number(a.points) > 0
+            )
+            .reduce(
+                (s,a) =>
+                    s + Number(a.points),
+                0
+            );
 
     const weekLoss =
         actions
-            .filter(a => a.points < 0)
-            .reduce((s,a) => s + a.points, 0);
+            .filter(
+                a => Number(a.points) < 0
+            )
+            .reduce(
+                (s,a) =>
+                    s + Number(a.points),
+                0
+            );
 
     const weekTotal =
         weekGain + weekLoss;
 
     const byDay = {};
 
-    actions.forEach(action => {
+    actions.forEach(
+        action => {
 
-        const key =
-            dateKey(action.created_at);
+            const key =
+                dateKey(
+                    action.created_at
+                );
 
-        if (!byDay[key]) {
-            byDay[key] = [];
+            if (!byDay[key]) {
+                byDay[key] = [];
+            }
+
+            byDay[key].push(
+                action
+            );
         }
-
-        byDay[key].push(action);
-    });
+    );
 
     let html = `
         <div class="card">
+
             <h3>
-                ${child === "leo" ? "👦 Léo" : "👧 Cloé"}
+                ${
+                    child === "leo"
+                        ? "👦 Léo"
+                        : "👧 Cloé"
+                }
             </h3>
 
             <div class="summary-grid">
 
                 <div class="stat">
+
                     <strong class="positive">
                         +${weekGain}
                     </strong>
-                    <span>Gagnés cette semaine</span>
+
+                    <span>
+                        Gagnés cette semaine
+                    </span>
+
                 </div>
 
                 <div class="stat">
+
                     <strong class="negative">
                         ${weekLoss}
                     </strong>
-                    <span>Perdus cette semaine</span>
+
+                    <span>
+                        Perdus cette semaine
+                    </span>
+
                 </div>
 
             </div>
 
-            <div class="stat" style="margin-top:10px">
+            <div
+                class="stat"
+                style="margin-top:10px">
+
                 <strong>
-                    ${weekTotal >= 0 ? "+" : ""}${weekTotal}
+                    ${
+                        weekTotal >= 0
+                            ? "+"
+                            : ""
+                    }${weekTotal}
                 </strong>
-                <span>Total de la semaine</span>
+
+                <span>
+                    Total de la semaine
+                </span>
+
             </div>
+
         </div>
     `;
 
     const monday =
         mondayOf(new Date());
 
-    for (let i = 0; i < 7; i++) {
+    for (
+        let i = 0;
+        i < 7;
+        i++
+    ) {
 
         const d =
             addDays(monday, i);
@@ -1099,21 +1163,28 @@ function buildChildWeek(child) {
 
         const dayTotal =
             dayActions.reduce(
-                (s,a) => s + Number(a.points),
+                (s,a) =>
+                    s + Number(a.points),
                 0
             );
 
         const sign =
-            dayTotal > 0 ? "+" : "";
+            dayTotal > 0
+                ? "+"
+                : "";
 
         html += `
             <div class="day-row">
 
                 <div
                     class="day-header"
-                    onclick="toggleDay('${child}','${key}')">
+                    onclick="toggleDay(
+                        '${child}',
+                        '${key}'
+                    )">
 
                     <span>
+
                         <strong>
                             ${d.toLocaleDateString(
                                 "fr-FR",
@@ -1124,21 +1195,31 @@ function buildChildWeek(child) {
                                 }
                             )}
                         </strong>
+
                         <br>
+
                         <small>
                             ${dayActions.length}
-                            action${dayActions.length > 1 ? "s" : ""}
+                            action${
+                                dayActions.length > 1
+                                    ? "s"
+                                    : ""
+                            }
                         </small>
+
                     </span>
 
-                    <strong class="${
-                        dayTotal > 0
-                            ? "positive"
-                            : dayTotal < 0
-                            ? "negative"
-                            : ""
-                    }">
+                    <strong
+                        class="${
+                            dayTotal > 0
+                                ? "positive"
+                                : dayTotal < 0
+                                ? "negative"
+                                : ""
+                        }">
+
                         ${sign}${dayTotal} pt
+
                     </strong>
 
                 </div>
@@ -1149,32 +1230,52 @@ function buildChildWeek(child) {
 
                     ${
                         dayActions.length
+
                             ? dayActions
                                 .sort(
                                     (a,b) =>
-                                        new Date(a.created_at) -
-                                        new Date(b.created_at)
+                                        new Date(
+                                            a.created_at
+                                        ) -
+                                        new Date(
+                                            b.created_at
+                                        )
                                 )
-                                .map(a => `
-                                    <div class="action-history">
-                                        <span>
-                                            ${escapeHtml(a.name)}
-                                        </span>
+                                .map(
+                                    a => `
+                                        <div class="action-history">
 
-                                        <strong class="${
-                                            a.points >= 0
-                                                ? "positive"
-                                                : "negative"
-                                        }">
-                                            ${a.points > 0 ? "+" : ""}
-                                            ${a.points} pt
-                                        </strong>
-                                    </div>
-                                `)
+                                            <span>
+                                                ${escapeHtml(
+                                                    a.name
+                                                )}
+                                            </span>
+
+                                            <strong
+                                                class="${
+                                                    a.points >= 0
+                                                        ? "positive"
+                                                        : "negative"
+                                                }">
+
+                                                ${
+                                                    a.points > 0
+                                                        ? "+"
+                                                        : ""
+                                                }${a.points} pt
+
+                                            </strong>
+
+                                        </div>
+                                    `
+                                )
                                 .join("")
-                            : `<div class="empty">
-                                Aucune action
-                               </div>`
+
+                            : `
+                                <div class="empty">
+                                    Aucune action
+                                </div>
+                            `
                     }
 
                 </div>
@@ -1195,12 +1296,17 @@ function buildRecap() {
     const cloe =
         buildChildWeek("cloe");
 
-    document.getElementById("recapContent").innerHTML =
+    document.getElementById(
+        "recapContent"
+    ).innerHTML =
         leo + cloe;
 }
 
 
-function toggleDay(child, key) {
+function toggleDay(
+    child,
+    key
+) {
 
     const element =
         document.getElementById(
@@ -1208,24 +1314,31 @@ function toggleDay(child, key) {
         );
 
     if (element) {
-        element.classList.toggle("open");
+        element.classList.toggle(
+            "open"
+        );
     }
 }
 
 
 /* =========================================================
-   MISE À JOUR INTERFACE
+   MISE À JOUR
 ========================================================= */
 
 function updateBalances() {
 
-    for (const child of ["leo", "cloe"]) {
+    for (
+        const child of
+        ["leo","cloe"]
+    ) {
 
         const points =
             total(child);
 
         const euros =
-            eurosFromPoints(points);
+            eurosFromPoints(
+                points
+            );
 
         document.getElementById(
             `balance-${child}`
@@ -1238,24 +1351,36 @@ function updateBalances() {
             formatEuros(euros);
     }
 
-    document.getElementById("cagnotteLeo")
-        .textContent =
-        formatPoints(total("leo"));
-
-    document.getElementById("cagnotteCloe")
-        .textContent =
-        formatPoints(total("cloe"));
-
-    document.getElementById("eurosLeo")
-        .textContent =
-        formatEuros(
-            eurosFromPoints(total("leo"))
+    document.getElementById(
+        "cagnotteLeo"
+    ).textContent =
+        formatPoints(
+            total("leo")
         );
 
-    document.getElementById("eurosCloe")
-        .textContent =
+    document.getElementById(
+        "cagnotteCloe"
+    ).textContent =
+        formatPoints(
+            total("cloe")
+        );
+
+    document.getElementById(
+        "eurosLeo"
+    ).textContent =
         formatEuros(
-            eurosFromPoints(total("cloe"))
+            eurosFromPoints(
+                total("leo")
+            )
+        );
+
+    document.getElementById(
+        "eurosCloe"
+    ).textContent =
+        formatEuros(
+            eurosFromPoints(
+                total("cloe")
+            )
         );
 }
 
@@ -1273,24 +1398,79 @@ function update() {
 
 function showPage(page) {
 
-    document.querySelectorAll(".page")
-        .forEach(p => p.classList.remove("active"));
-
-    document.querySelectorAll("nav button")
-        .forEach(b => b.classList.remove("active"));
+    document
+        .querySelectorAll(".page")
+        .forEach(
+            p =>
+                p.classList.remove(
+                    "active"
+                )
+        );
 
     document
-        .getElementById(`page-${page}`)
-        .classList.add("active");
+        .querySelectorAll("nav button")
+        .forEach(
+            b =>
+                b.classList.remove(
+                    "active"
+                )
+        );
 
     document
-        .getElementById(`nav-${page}`)
-        .classList.add("active");
+        .getElementById(
+            `page-${page}`
+        )
+        .classList.add(
+            "active"
+        );
+
+    document
+        .getElementById(
+            `nav-${page}`
+        )
+        .classList.add(
+            "active"
+        );
 
     if (page === "recap") {
         buildRecap();
     }
 }
+
+
+/* =========================================================
+   SUPABASE REALTIME
+========================================================= */
+
+supabaseClient
+    .channel("actions-realtime")
+    .on(
+        "postgres_changes",
+        {
+            event: "*",
+            schema: "public",
+            table: "actions"
+        },
+        payload => {
+
+            console.log(
+                "Changement détecté :",
+                payload
+            );
+
+            loadData();
+        }
+    )
+    .subscribe(
+        status => {
+
+            console.log(
+                "Realtime status:",
+                status
+            );
+
+        }
+    );
 
 
 /* =========================================================
