@@ -289,6 +289,40 @@ main {
     font-size: 23px;
 }
 
+
+/* =========================
+   PANNEAUX LÉO / CLOÉ DU RÉCAP
+   ========================= */
+
+.recap-child-card {
+    background: #f8fafc;
+    border: 2px solid #d1d5db;
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin: 0 0 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.10);
+}
+
+.recap-child-card h3 {
+    margin: 0 0 10px;
+    text-align: center;
+    font-size: 19px;
+}
+
+.recap-child-card .summary-grid {
+    gap: 8px;
+}
+
+.recap-child-card .stat {
+    padding: 9px 8px;
+    border: 1px solid #e5e7eb;
+    background: white;
+}
+
+.recap-child-card .stat strong {
+    font-size: 20px;
+}
+
 .positive {
     color: #16a34a;
 }
@@ -1841,7 +1875,7 @@ function buildChildWeek(child) {
 
     let html = `
 
-        <div class="card">
+        <div class="card recap-child-card">
 
             <h3>
 
