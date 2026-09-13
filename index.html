@@ -1,204 +1,203 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Points Enfants</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Points Enfants</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+*{box-sizing:border-box}
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f2f5f7;
-      color: #222;
-    }
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#eef3f6;
+  color:#222;
+}
 
-    header {
-      background: #ffffff;
-      padding: 18px;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
+header{
+  background:white;
+  padding:18px;
+  text-align:center;
+  box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
 
-    header h1 {
-      margin: 0;
-      font-size: 26px;
-    }
+header h1{margin:0;font-size:26px}
 
-    nav {
-      display: flex;
-      background: white;
-      border-bottom: 1px solid #ddd;
-      overflow-x: auto;
-    }
+nav{
+  display:flex;
+  background:white;
+  border-bottom:1px solid #ddd;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
 
-    nav button {
-      flex: 1;
-      min-width: 100px;
-      padding: 15px 8px;
-      border: none;
-      background: white;
-      font-size: 15px;
-      cursor: pointer;
-    }
+nav button{
+  flex:1;
+  padding:15px 5px;
+  border:0;
+  background:white;
+  font-size:15px;
+  cursor:pointer;
+}
 
-    nav button.active {
-      font-weight: bold;
-      border-bottom: 4px solid #4caf50;
-    }
+nav button.active{
+  font-weight:bold;
+  border-bottom:4px solid #4caf50;
+}
 
-    .page {
-      display: none;
-      padding: 20px;
-      max-width: 900px;
-      margin: auto;
-    }
+.page{
+  display:none;
+  max-width:1000px;
+  margin:auto;
+  padding:18px;
+}
 
-    .page.active {
-      display: block;
-    }
+.page.active{display:block}
 
-    .solde {
-      background: white;
-      border-radius: 15px;
-      padding: 20px;
-      text-align: center;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
+.card{
+  background:white;
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:18px;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
 
-    .solde .points {
-      font-size: 42px;
-      font-weight: bold;
-    }
+.solde{
+  text-align:center;
+}
 
-    .solde .euros {
-      font-size: 22px;
-      margin-top: 5px;
-    }
+.points{
+  font-size:42px;
+  font-weight:bold;
+}
 
-    h2 {
-      margin-top: 10px;
-    }
+.euros{
+  font-size:23px;
+  margin-top:5px;
+}
 
-    .section {
-      background: white;
-      border-radius: 15px;
-      padding: 18px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
+h2{margin-top:5px}
 
-    .boutons {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 12px;
-    }
+.section-title{
+  margin:0 0 15px;
+}
 
-    .action {
-      border: none;
-      border-radius: 12px;
-      padding: 18px 12px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      min-height: 75px;
-    }
+.buttons{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:12px;
+}
 
-    .bon {
-      background: #b9e8c0;
-    }
+.action{
+  border:0;
+  border-radius:14px;
+  padding:18px 10px;
+  min-height:80px;
+  font-size:15px;
+  font-weight:bold;
+  cursor:pointer;
+}
 
-    .bon:hover {
-      background: #9bdca5;
-    }
+.bon{background:#b9e8c0}
+.bon:hover{background:#9bdca5}
 
-    .mauvais {
-      background: #e8a6a6;
-    }
+.mauvais{background:#e8a6a6}
+.mauvais:hover{background:#dc8888}
 
-    .mauvais:hover {
-      background: #dc8888;
-    }
+.undo{
+  width:100%;
+  border:0;
+  border-radius:12px;
+  padding:13px;
+  background:#e8e8e8;
+  font-size:15px;
+  cursor:pointer;
+}
 
-    .recap-card {
-      background: white;
-      border-radius: 15px;
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
+.undo:hover{background:#d8d8d8}
 
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      text-align: center;
-    }
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
 
-    .stat {
-      padding: 12px;
-      border-radius: 10px;
-      background: #f2f2f2;
-    }
+.stat{
+  background:#f4f4f4;
+  border-radius:12px;
+  padding:15px;
+  text-align:center;
+}
 
-    .gagne {
-      color: #16852a;
-      font-weight: bold;
-    }
+.stat strong{
+  display:block;
+  font-size:22px;
+  margin-top:5px;
+}
 
-    .perdu {
-      color: #c62828;
-      font-weight: bold;
-    }
+.gagne{color:#16852a}
+.perdu{color:#c62828}
 
-    .tableau {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 15px;
-    }
+.tableau{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:15px;
+}
 
-    .tableau th,
-    .tableau td {
-      padding: 10px;
-      border-bottom: 1px solid #ddd;
-      text-align: center;
-    }
+.tableau th,
+.tableau td{
+  padding:11px 7px;
+  border-bottom:1px solid #ddd;
+  text-align:center;
+}
 
-    .tableau th {
-      background: #f5f5f5;
-    }
+.tableau th{background:#f4f4f4}
 
-    .cagnotte {
-      font-size: 32px;
-      font-weight: bold;
-      text-align: center;
-      margin: 15px;
-    }
+.day{
+  cursor:pointer;
+}
 
-    @media (max-width: 600px) {
-      .page {
-        padding: 12px;
-      }
+.day:hover{
+  background:#eef6ff;
+}
 
-      .stats {
-        grid-template-columns: 1fr;
-      }
+.detail{
+  display:none;
+  background:#f7f7f7;
+}
 
-      .boutons {
-        grid-template-columns: 1fr 1fr;
-      }
+.detail.open{display:table-row}
 
-      .action {
-        font-size: 14px;
-        padding: 14px 8px;
-      }
-    }
-  </style>
+.detail-content{
+  text-align:left;
+  padding:12px;
+}
+
+.action-line{
+  padding:5px 0;
+}
+
+.cagnotte{
+  text-align:center;
+  font-size:36px;
+  font-weight:bold;
+}
+
+.info{
+  text-align:center;
+  color:#666;
+}
+
+@media(max-width:600px){
+  .page{padding:10px}
+  .buttons{grid-template-columns:1fr 1fr}
+  .action{font-size:13px;padding:13px 7px}
+  .stats{grid-template-columns:1fr}
+  nav button{font-size:13px}
+}
+</style>
 </head>
 
 <body>
@@ -208,311 +207,587 @@
 </header>
 
 <nav>
-  <button class="active" onclick="afficherPage('recap', this)">📊 Récap</button>
-  <button onclick="afficherPage('leo', this)">👦 Léo</button>
-  <button onclick="afficherPage('chloe', this)">👧 Chloé</button>
-  <button onclick="afficherPage('cagnotte', this)">💰 Cagnotte</button>
+  <button class="active" onclick="showPage('recap',this)">📊 Récap</button>
+  <button onclick="showPage('leo',this)">👦 Léo</button>
+  <button onclick="showPage('chloe',this)">👧 Chloé</button>
+  <button onclick="showPage('cagnotte',this)">💰 Cagnotte</button>
 </nav>
 
-<!-- PAGE RÉCAP -->
+
+<!-- ================= RÉCAP ================= -->
+
 <div id="recap" class="page active">
-  <h2>📊 Récapitulatif</h2>
 
-  <div class="recap-card">
-    <h2>👦 Léo</h2>
+<h2>📊 Récapitulatif</h2>
 
-    <div class="stats">
-      <div class="stat">
-        <div>🟢 Gagnés</div>
-        <div class="gagne">0 pts</div>
-      </div>
+<div id="recapLeo"></div>
+<div id="recapChloe"></div>
 
-      <div class="stat">
-        <div>🔴 Perdus</div>
-        <div class="perdu">0 pts</div>
-      </div>
-
-      <div class="stat">
-        <div>⚖️ Solde</div>
-        <div>0 pts</div>
-      </div>
-    </div>
-
-    <h3>Détail de la semaine</h3>
-
-    <table class="tableau">
-      <tr>
-        <th>Jour</th>
-        <th>🟢 Gagnés</th>
-        <th>🔴 Perdus</th>
-        <th>Solde</th>
-      </tr>
-      <tr>
-        <td>Lundi</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <td>Mardi</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <td>Mercredi</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <td>Jeudi</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <td>Vendredi</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <td>Samedi</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <td>Dimanche</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-      </tr>
-    </table>
-  </div>
-
-  <div class="recap-card">
-    <h2>👧 Chloé</h2>
-
-    <div class="stats">
-      <div class="stat">
-        <div>🟢 Gagnés</div>
-        <div class="gagne">0 pts</div>
-      </div>
-
-      <div class="stat">
-        <div>🔴 Perdus</div>
-        <div class="perdu">0 pts</div>
-      </div>
-
-      <div class="stat">
-        <div>⚖️ Solde</div>
-        <div>0 pts</div>
-      </div>
-    </div>
-
-    <h3>Détail de la semaine</h3>
-
-    <table class="tableau">
-      <tr>
-        <th>Jour</th>
-        <th>🟢 Gagnés</th>
-        <th>🔴 Perdus</th>
-        <th>Solde</th>
-      </tr>
-      <tr><td>Lundi</td><td>0</td><td>0</td><td>0</td></tr>
-      <tr><td>Mardi</td><td>0</td><td>0</td><td>0</td></tr>
-      <tr><td>Mercredi</td><td>0</td><td>0</td><td>0</td></tr>
-      <tr><td>Jeudi</td><td>0</td><td>0</td><td>0</td></tr>
-      <tr><td>Vendredi</td><td>0</td><td>0</td><td>0</td></tr>
-      <tr><td>Samedi</td><td>0</td><td>0</td><td>0</td></tr>
-      <tr><td>Dimanche</td><td>0</td><td>0</td><td>0</td></tr>
-    </table>
-  </div>
 </div>
 
-<!-- PAGE LÉO -->
+
+<!-- ================= LÉO ================= -->
+
 <div id="leo" class="page">
-  <h2>👦 Léo</h2>
 
-  <div class="solde">
-    <div>Solde actuel</div>
-    <div class="points" id="pointsLeo">0 pts</div>
-    <div class="euros" id="eurosLeo">0,00 €</div>
-  </div>
+<h2>👦 Léo</h2>
 
-  <div class="section">
-    <h2>🟢 Récompenses</h2>
-
-    <div class="boutons">
-      <button class="action bon" onclick="ajouterPoints('leo', 1)">
-        Faire son lit<br>+1
-      </button>
-
-      <button class="action bon" onclick="ajouterPoints('leo', 1)">
-        Ranger et nettoyer<br>après son déjeuner<br>+1
-      </button>
-
-      <button class="action bon" onclick="ajouterPoints('leo', 1)">
-        Ranger la table<br>et la nettoyer<br>+1
-      </button>
-
-      <button class="action bon" onclick="ajouterPoints('leo', 10)">
-        Chambre irréprochable<br>+10
-      </button>
-
-      <button class="action bon" onclick="ajouterPoints('leo', 2)">
-        Ranger sa chambre<br>+2
-      </button>
-
-      <button class="action bon" onclick="ajouterPoints('leo', 20)">
-        Ramasser les crottes<br>+20
-      </button>
-
-      <button class="action bon" onclick="ajouterPoints('leo', 5)">
-        Aspirateur correctement<br>sur 1 niveau<br>+5
-      </button>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>🔴 Punitions</h2>
-
-    <div class="boutons">
-      <button class="action mauvais" onclick="ajouterPoints('leo', -1)">
-        Linge qui traîne<br>-1
-      </button>
-
-      <button class="action mauvais" onclick="ajouterPoints('leo', -1)">
-        Chaussures qui traînent<br>-1
-      </button>
-
-      <button class="action mauvais" onclick="ajouterPoints('leo', -1)">
-        Chamaillerie<br>-1
-      </button>
-
-      <button class="action mauvais" onclick="ajouterPoints('leo', -5)">
-        Bagarre<br>-5
-      </button>
-
-      <button class="action mauvais" onclick="ajouterPoints('leo', -5)">
-        Gros mots<br>-5
-      </button>
-
-      <button class="action mauvais" onclick="ajouterPoints('leo', -10)">
-        SDB sale<br>-10
-      </button>
-    </div>
-  </div>
+<div class="card solde">
+  <div>Solde actuel</div>
+  <div class="points" id="pointsLeo">0 pts</div>
+  <div class="euros" id="eurosLeo">0,00 €</div>
 </div>
 
-<!-- PAGE CHLOÉ -->
+<div class="card">
+
+<h2 class="section-title">🟢 Récompenses</h2>
+
+<div class="buttons">
+
+<button class="action bon" onclick="addAction('leo','Faire son lit',1)">
+Faire son lit<br>+1 pt
+</button>
+
+<button class="action bon" onclick="addAction('leo','Ranger et nettoyer après son déjeuner',1)">
+Ranger et nettoyer<br>après son déjeuner<br>+1 pt
+</button>
+
+<button class="action bon" onclick="addAction('leo','Ranger la table et la nettoyer',1)">
+Ranger la table<br>et la nettoyer<br>+1 pt
+</button>
+
+<button class="action bon" onclick="addAction('leo','Ranger sa chambre de manière irréprochable',10)">
+Chambre irréprochable<br>+10 pts
+</button>
+
+<button class="action bon" onclick="addAction('leo','Ranger sa chambre simplement',2)">
+Ranger sa chambre<br>+2 pts
+</button>
+
+<button class="action bon" onclick="addAction('leo','Ramasser les crottes',20)">
+Ramasser les crottes<br>+20 pts
+</button>
+
+<button class="action bon" onclick="addAction('leo','Passer l’aspirateur correctement sur 1 niveau',5)">
+Aspirateur<br>1 niveau<br>+5 pts
+</button>
+
+</div>
+</div>
+
+
+<div class="card">
+
+<h2 class="section-title">🔴 Punitions</h2>
+
+<div class="buttons">
+
+<button class="action mauvais" onclick="addAction('leo','Linge qui traîne',-1)">
+Linge qui traîne<br>-1 pt
+</button>
+
+<button class="action mauvais" onclick="addAction('leo','Chaussures qui traînent',-1)">
+Chaussures qui traînent<br>-1 pt
+</button>
+
+<button class="action mauvais" onclick="addAction('leo','Chamaillerie',-1)">
+Chamaillerie<br>-1 pt
+</button>
+
+<button class="action mauvais" onclick="addAction('leo','Bagarre',-5)">
+Bagarre<br>-5 pts
+</button>
+
+<button class="action mauvais" onclick="addAction('leo','Gros mots',-5)">
+Gros mots<br>-5 pts
+</button>
+
+<button class="action mauvais" onclick="addAction('leo','SDB sale',-10)">
+SDB sale<br>-10 pts
+</button>
+
+</div>
+</div>
+
+
+<div class="card">
+
+<button class="undo" onclick="undoAction('leo')">
+↩️ Annuler la dernière action de Léo
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= CHLOÉ ================= -->
+
 <div id="chloe" class="page">
-  <h2>👧 Chloé</h2>
 
-  <div class="solde">
-    <div>Solde actuel</div>
-    <div class="points" id="pointsChloe">0 pts</div>
-    <div class="euros" id="eurosChloe">0,00 €</div>
-  </div>
+<h2>👧 Chloé</h2>
 
-  <div class="section">
-    <h2>🟢 Récompenses</h2>
-
-    <div class="boutons">
-      <button class="action bon" onclick="ajouterPoints('chloe', 1)">Faire son lit<br>+1</button>
-      <button class="action bon" onclick="ajouterPoints('chloe', 1)">Ranger après son déjeuner<br>+1</button>
-      <button class="action bon" onclick="ajouterPoints('chloe', 1)">Ranger la table<br>+1</button>
-      <button class="action bon" onclick="ajouterPoints('chloe', 10)">Chambre irréprochable<br>+10</button>
-      <button class="action bon" onclick="ajouterPoints('chloe', 2)">Ranger sa chambre<br>+2</button>
-      <button class="action bon" onclick="ajouterPoints('chloe', 20)">Ramasser les crottes<br>+20</button>
-      <button class="action bon" onclick="ajouterPoints('chloe', 5)">Aspirateur<br>+5</button>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>🔴 Punitions</h2>
-
-    <div class="boutons">
-      <button class="action mauvais" onclick="ajouterPoints('chloe', -1)">Linge qui traîne<br>-1</button>
-      <button class="action mauvais" onclick="ajouterPoints('chloe', -1)">Chaussures qui traînent<br>-1</button>
-      <button class="action mauvais" onclick="ajouterPoints('chloe', -1)">Chamaillerie<br>-1</button>
-      <button class="action mauvais" onclick="ajouterPoints('chloe', -5)">Bagarre<br>-5</button>
-      <button class="action mauvais" onclick="ajouterPoints('chloe', -5)">Gros mots<br>-5</button>
-      <button class="action mauvais" onclick="ajouterPoints('chloe', -10)">SDB sale<br>-10</button>
-    </div>
-  </div>
+<div class="card solde">
+  <div>Solde actuel</div>
+  <div class="points" id="pointsChloe">0 pts</div>
+  <div class="euros" id="eurosChloe">0,00 €</div>
 </div>
 
-<!-- PAGE CAGNOTTE -->
+<div class="card">
+
+<h2 class="section-title">🟢 Récompenses</h2>
+
+<div class="buttons">
+
+<button class="action bon" onclick="addAction('chloe','Faire son lit',1)">
+Faire son lit<br>+1 pt
+</button>
+
+<button class="action bon" onclick="addAction('chloe','Ranger et nettoyer après son déjeuner',1)">
+Ranger et nettoyer<br>après son déjeuner<br>+1 pt
+</button>
+
+<button class="action bon" onclick="addAction('chloe','Ranger la table et la nettoyer',1)">
+Ranger la table<br>et la nettoyer<br>+1 pt
+</button>
+
+<button class="action bon" onclick="addAction('chloe','Ranger sa chambre de manière irréprochable',10)">
+Chambre irréprochable<br>+10 pts
+</button>
+
+<button class="action bon" onclick="addAction('chloe','Ranger sa chambre simplement',2)">
+Ranger sa chambre<br>+2 pts
+</button>
+
+<button class="action bon" onclick="addAction('chloe','Ramasser les crottes',20)">
+Ramasser les crottes<br>+20 pts
+</button>
+
+<button class="action bon" onclick="addAction('chloe','Passer l’aspirateur correctement sur 1 niveau',5)">
+Aspirateur<br>1 niveau<br>+5 pts
+</button>
+
+</div>
+</div>
+
+
+<div class="card">
+
+<h2 class="section-title">🔴 Punitions</h2>
+
+<div class="buttons">
+
+<button class="action mauvais" onclick="addAction('chloe','Linge qui traîne',-1)">
+Linge qui traîne<br>-1 pt
+</button>
+
+<button class="action mauvais" onclick="addAction('chloe','Chaussures qui traînent',-1)">
+Chaussures qui traînent<br>-1 pt
+</button>
+
+<button class="action mauvais" onclick="addAction('chloe','Chamaillerie',-1)">
+Chamaillerie<br>-1 pt
+</button>
+
+<button class="action mauvais" onclick="addAction('chloe','Bagarre',-5)">
+Bagarre<br>-5 pts
+</button>
+
+<button class="action mauvais" onclick="addAction('chloe','Gros mots',-5)">
+Gros mots<br>-5 pts
+</button>
+
+<button class="action mauvais" onclick="addAction('chloe','SDB sale',-10)">
+SDB sale<br>-10 pts
+</button>
+
+</div>
+</div>
+
+
+<div class="card">
+
+<button class="undo" onclick="undoAction('chloe')">
+↩️ Annuler la dernière action de Chloé
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= CAGNOTTE ================= -->
+
 <div id="cagnotte" class="page">
-  <h2>💰 Gestion de la cagnotte</h2>
 
-  <div class="section">
-    <h2>👦 Léo</h2>
-    <div class="cagnotte" id="cagnotteLeo">0,00 €</div>
-    <p style="text-align:center;">100 points = 20 €</p>
-  </div>
+<h2>💰 Gestion de la cagnotte</h2>
 
-  <div class="section">
-    <h2>👧 Chloé</h2>
-    <div class="cagnotte" id="cagnotteChloe">0,00 €</div>
-    <p style="text-align:center;">100 points = 20 €</p>
-  </div>
+<div class="card">
+
+<h2>👦 Léo</h2>
+
+<div class="cagnotte" id="cagnotteLeo">0,00 €</div>
+
+<p class="info">100 points = 10 €</p>
+
 </div>
+
+
+<div class="card">
+
+<h2>👧 Chloé</h2>
+
+<div class="cagnotte" id="cagnotteChloe">0,00 €</div>
+
+<p class="info">100 points = 10 €</p>
+
+</div>
+
+</div>
+
 
 <script>
-  let pointsLeo = 0;
-  let pointsChloe = 0;
 
-  function afficherPoints() {
-    document.getElementById("pointsLeo").textContent =
-      pointsLeo + " pts";
+/* ================= DONNÉES ================= */
 
-    document.getElementById("pointsChloe").textContent =
-      pointsChloe + " pts";
+let data = JSON.parse(localStorage.getItem("pointsEnfants")) || {
+  leo: [],
+  chloe: []
+};
 
-    document.getElementById("eurosLeo").textContent =
-      (pointsLeo * 0.20).toFixed(2).replace(".", ",") + " €";
 
-    document.getElementById("eurosChloe").textContent =
-      (pointsChloe * 0.20).toFixed(2).replace(".", ",") + " €";
+/* ================= SAUVEGARDE ================= */
 
-    document.getElementById("cagnotteLeo").textContent =
-      (pointsLeo * 0.20).toFixed(2).replace(".", ",") + " €";
+function save(){
+  localStorage.setItem("pointsEnfants", JSON.stringify(data));
+}
 
-    document.getElementById("cagnotteChloe").textContent =
-      (pointsChloe * 0.20).toFixed(2).replace(".", ",") + " €";
+
+/* ================= DATE ================= */
+
+function today(){
+  let d = new Date();
+
+  let y = d.getFullYear();
+  let m = String(d.getMonth()+1).padStart(2,"0");
+  let day = String(d.getDate()).padStart(2,"0");
+
+  return `${y}-${m}-${day}`;
+}
+
+
+/* ================= AJOUT ================= */
+
+function addAction(child,name,points){
+
+  data[child].push({
+    id:Date.now(),
+    name:name,
+    points:points,
+    date:today(),
+    time:new Date().toLocaleTimeString("fr-FR",{
+      hour:"2-digit",
+      minute:"2-digit"
+    })
+  });
+
+  save();
+  update();
+}
+
+
+/* ================= ANNULER ================= */
+
+function undoAction(child){
+
+  if(data[child].length === 0){
+    alert("Aucune action à annuler.");
+    return;
   }
 
-  function ajouterPoints(enfant, points) {
-    if (enfant === "leo") {
-      pointsLeo += points;
-    }
+  data[child].pop();
 
-    if (enfant === "chloe") {
-      pointsChloe += points;
-    }
+  save();
+  update();
+}
 
-    afficherPoints();
+
+/* ================= TOTAL ================= */
+
+function total(child){
+
+  return data[child].reduce(
+    (sum,a)=>sum+a.points,
+    0
+  );
+}
+
+
+/* ================= GAGNÉS ================= */
+
+function gained(child,actions=data[child]){
+
+  return actions
+    .filter(a=>a.points>0)
+    .reduce((sum,a)=>sum+a.points,0);
+}
+
+
+/* ================= PERDUS ================= */
+
+function lost(child,actions=data[child]){
+
+  return Math.abs(
+    actions
+      .filter(a=>a.points<0)
+      .reduce((sum,a)=>sum+a.points,0)
+  );
+}
+
+
+/* ================= EUROS ================= */
+
+function euros(points){
+
+  return (points * 0.10)
+    .toFixed(2)
+    .replace(".",",") + " €";
+}
+
+
+/* ================= JOUR ================= */
+
+function formatDate(date){
+
+  let d = new Date(date+"T12:00:00");
+
+  return d.toLocaleDateString("fr-FR",{
+    weekday:"long",
+    day:"2-digit",
+    month:"2-digit"
+  });
+}
+
+
+/* ================= SEMAINE ================= */
+
+function weekActions(child){
+
+  let now = new Date();
+
+  let day = now.getDay();
+
+  let monday = new Date(now);
+
+  let diff = day === 0 ? -6 : 1-day;
+
+  monday.setDate(now.getDate()+diff);
+
+  monday.setHours(0,0,0,0);
+
+  let sunday = new Date(monday);
+
+  sunday.setDate(monday.getDate()+6);
+
+  sunday.setHours(23,59,59,999);
+
+  return data[child].filter(a=>{
+
+    let d = new Date(a.date+"T12:00:00");
+
+    return d>=monday && d<=sunday;
+
+  });
+}
+
+
+/* ================= RÉCAP ================= */
+
+function buildRecap(child,name){
+
+  let actions = weekActions(child);
+
+  let g = gained(child,actions);
+  let l = lost(child,actions);
+  let balance = g-l;
+
+  let html = `
+
+  <div class="card">
+
+    <h2>${name}</h2>
+
+    <div class="stats">
+
+      <div class="stat">
+        🟢 Gagnés
+        <strong class="gagne">+${g}</strong>
+      </div>
+
+      <div class="stat">
+        🔴 Perdus
+        <strong class="perdu">-${l}</strong>
+      </div>
+
+      <div class="stat">
+        ⚖️ Solde
+        <strong>${balance}</strong>
+      </div>
+
+    </div>
+
+    <h3>Détail de la semaine</h3>
+
+    <table class="tableau">
+
+      <tr>
+        <th>Jour</th>
+        <th>🟢</th>
+        <th>🔴</th>
+        <th>Solde</th>
+      </tr>
+  `;
+
+
+  let now = new Date();
+
+  let day = now.getDay();
+
+  let monday = new Date(now);
+
+  let diff = day === 0 ? -6 : 1-day;
+
+  monday.setDate(now.getDate()+diff);
+
+  for(let i=0;i<7;i++){
+
+    let d = new Date(monday);
+
+    d.setDate(monday.getDate()+i);
+
+    let y=d.getFullYear();
+    let m=String(d.getMonth()+1).padStart(2,"0");
+    let da=String(d.getDate()).padStart(2,"0");
+
+    let key=`${y}-${m}-${da}`;
+
+    let dayActions=actions.filter(a=>a.date===key);
+
+    let dg=gained(child,dayActions);
+    let dl=lost(child,dayActions);
+    let ds=dg-dl;
+
+    let detail = dayActions.length
+      ? dayActions.map(a=>`
+          <div class="action-line">
+            ${a.points>0?"🟢":"🔴"}
+            ${a.name}
+            <strong>${a.points>0?"+":""}${a.points}</strong>
+            <small>(${a.time})</small>
+          </div>
+        `).join("")
+      : `<div class="action-line">Aucune action</div>`;
+
+    html += `
+
+      <tr class="day" onclick="toggleDetail('${child}-${key}')">
+        <td>${formatDate(key)} 👆</td>
+        <td class="gagne">+${dg}</td>
+        <td class="perdu">-${dl}</td>
+        <td>${ds>0?"+":""}${ds}</td>
+      </tr>
+
+      <tr id="${child}-${key}" class="detail">
+        <td colspan="4">
+          <div class="detail-content">
+            ${detail}
+          </div>
+        </td>
+      </tr>
+
+    `;
   }
 
-  function afficherPage(page, bouton) {
-    document.querySelectorAll(".page").forEach(function(p) {
-      p.classList.remove("active");
-    });
 
-    document.getElementById(page).classList.add("active");
+  html += `
+    </table>
 
-    document.querySelectorAll("nav button").forEach(function(b) {
-      b.classList.remove("active");
-    });
+  </div>
+  `;
 
-    bouton.classList.add("active");
+  return html;
+}
+
+
+/* ================= AFFICHER ================= */
+
+function update(){
+
+  let leoTotal=total("leo");
+  let chloeTotal=total("chloe");
+
+  document.getElementById("pointsLeo").textContent =
+    leoTotal+" pts";
+
+  document.getElementById("pointsChloe").textContent =
+    chloeTotal+" pts";
+
+  document.getElementById("eurosLeo").textContent =
+    euros(leoTotal);
+
+  document.getElementById("eurosChloe").textContent =
+    euros(chloeTotal);
+
+  document.getElementById("cagnotteLeo").textContent =
+    euros(leoTotal);
+
+  document.getElementById("cagnotteChloe").textContent =
+    euros(chloeTotal);
+
+  document.getElementById("recapLeo").innerHTML =
+    buildRecap("leo","👦 Léo");
+
+  document.getElementById("recapChloe").innerHTML =
+    buildRecap("chloe","👧 Chloé");
+}
+
+
+/* ================= DÉTAIL ================= */
+
+function toggleDetail(id){
+
+  let row=document.getElementById(id);
+
+  if(row){
+    row.classList.toggle("open");
   }
 
-  afficherPoints();
+}
+
+
+/* ================= NAVIGATION ================= */
+
+function showPage(page,button){
+
+  document.querySelectorAll(".page")
+    .forEach(p=>p.classList.remove("active"));
+
+  document.getElementById(page)
+    .classList.add("active");
+
+  document.querySelectorAll("nav button")
+    .forEach(b=>b.classList.remove("active"));
+
+  button.classList.add("active");
+
+  update();
+}
+
+
+/* ================= INITIALISATION ================= */
+
+update();
+
 </script>
 
 </body>
