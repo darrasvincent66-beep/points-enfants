@@ -3,199 +3,276 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Points Enfants</title>
+<title>⭐ Points Enfants</title>
 
 <style>
-*{box-sizing:border-box}
-
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#eef3f6;
-  color:#222;
+* {
+  box-sizing: border-box;
 }
 
-header{
-  background:white;
-  padding:18px;
-  text-align:center;
-  box-shadow:0 2px 8px rgba(0,0,0,.1);
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #eef3f6;
+  color: #222;
 }
 
-header h1{margin:0;font-size:26px}
-
-nav{
-  display:flex;
-  background:white;
-  border-bottom:1px solid #ddd;
-  position:sticky;
-  top:0;
-  z-index:10;
+header {
+  background: white;
+  padding: 18px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,.1);
 }
 
-nav button{
-  flex:1;
-  padding:15px 5px;
-  border:0;
-  background:white;
-  font-size:15px;
-  cursor:pointer;
+header h1 {
+  margin: 0;
+  font-size: 26px;
 }
 
-nav button.active{
-  font-weight:bold;
-  border-bottom:4px solid #4caf50;
+nav {
+  display: flex;
+  background: white;
+  border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
-.page{
-  display:none;
-  max-width:1000px;
-  margin:auto;
-  padding:18px;
+nav button {
+  flex: 1;
+  padding: 15px 5px;
+  border: 0;
+  background: white;
+  font-size: 15px;
+  cursor: pointer;
 }
 
-.page.active{display:block}
-
-.card{
-  background:white;
-  border-radius:16px;
-  padding:20px;
-  margin-bottom:18px;
-  box-shadow:0 2px 8px rgba(0,0,0,.08);
+nav button.active {
+  font-weight: bold;
+  border-bottom: 4px solid #4caf50;
 }
 
-.solde{
-  text-align:center;
+.page {
+  display: none;
+  max-width: 1000px;
+  margin: auto;
+  padding: 18px;
 }
 
-.points{
-  font-size:42px;
-  font-weight:bold;
+.page.active {
+  display: block;
 }
 
-.euros{
-  font-size:23px;
-  margin-top:5px;
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
 }
 
-h2{margin-top:5px}
-
-.section-title{
-  margin:0 0 15px;
+.solde {
+  text-align: center;
 }
 
-.buttons{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
-  gap:12px;
+.points {
+  font-size: 42px;
+  font-weight: bold;
 }
 
-.action{
-  border:0;
-  border-radius:14px;
-  padding:18px 10px;
-  min-height:80px;
-  font-size:15px;
-  font-weight:bold;
-  cursor:pointer;
+.euros {
+  font-size: 23px;
+  margin-top: 5px;
 }
 
-.bon{background:#b9e8c0}
-.bon:hover{background:#9bdca5}
-
-.mauvais{background:#e8a6a6}
-.mauvais:hover{background:#dc8888}
-
-.undo{
-  width:100%;
-  border:0;
-  border-radius:12px;
-  padding:13px;
-  background:#e8e8e8;
-  font-size:15px;
-  cursor:pointer;
+h2 {
+  margin-top: 5px;
 }
 
-.undo:hover{background:#d8d8d8}
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
+.section-title {
+  margin: 0 0 15px;
 }
 
-.stat{
-  background:#f4f4f4;
-  border-radius:12px;
-  padding:15px;
-  text-align:center;
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 12px;
 }
 
-.stat strong{
-  display:block;
-  font-size:22px;
-  margin-top:5px;
+.action {
+  border: 0;
+  border-radius: 14px;
+  padding: 18px 10px;
+  min-height: 80px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-.gagne{color:#16852a}
-.perdu{color:#c62828}
+.bon {
+  background: #b9e8c0;
+}
 
-.tableau{
-  width:100%;
-  border-collapse:collapse;
-  margin-top:15px;
+.bon:hover {
+  background: #9bdca5;
+}
+
+.mauvais {
+  background: #e8a6a6;
+}
+
+.mauvais:hover {
+  background: #dc8888;
+}
+
+.undo {
+  width: 100%;
+  border: 0;
+  border-radius: 12px;
+  padding: 13px;
+  background: #e8e8e8;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.undo:hover {
+  background: #d8d8d8;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 10px;
+}
+
+.stat {
+  background: #f4f4f4;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+}
+
+.stat strong {
+  display: block;
+  font-size: 22px;
+  margin-top: 5px;
+}
+
+.gagne {
+  color: #16852a;
+}
+
+.perdu {
+  color: #c62828;
+}
+
+.tableau {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
 }
 
 .tableau th,
-.tableau td{
-  padding:11px 7px;
-  border-bottom:1px solid #ddd;
-  text-align:center;
+.tableau td {
+  padding: 11px 7px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
 }
 
-.tableau th{background:#f4f4f4}
-
-.day{
-  cursor:pointer;
+.tableau th {
+  background: #f4f4f4;
 }
 
-.day:hover{
-  background:#eef6ff;
+.day {
+  cursor: pointer;
 }
 
-.detail{
-  display:none;
-  background:#f7f7f7;
+.day:hover {
+  background: #eef6ff;
 }
 
-.detail.open{display:table-row}
-
-.detail-content{
-  text-align:left;
-  padding:12px;
+.detail {
+  display: none;
+  background: #f7f7f7;
 }
 
-.action-line{
-  padding:5px 0;
+.detail.open {
+  display: table-row;
 }
 
-.cagnotte{
-  text-align:center;
-  font-size:36px;
-  font-weight:bold;
+.detail-content {
+  text-align: left;
+  padding: 12px;
 }
 
-.info{
-  text-align:center;
-  color:#666;
+.action-line {
+  padding: 6px 0;
 }
 
-@media(max-width:600px){
-  .page{padding:10px}
-  .buttons{grid-template-columns:1fr 1fr}
-  .action{font-size:13px;padding:13px 7px}
-  .stats{grid-template-columns:1fr}
-  nav button{font-size:13px}
+.cagnotte {
+  text-align: center;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.info {
+  text-align: center;
+  color: #666;
+}
+
+.retrait-box {
+  margin-top: 15px;
+  padding: 15px;
+  background: #f5f5f5;
+  border-radius: 12px;
+}
+
+.retrait-box input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.retrait-btn {
+  width: 100%;
+  border: 0;
+  border-radius: 10px;
+  padding: 13px;
+  background: #e8a6a6;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.retrait-btn:hover {
+  background: #dc8888;
+}
+
+@media(max-width:600px) {
+
+  .page {
+    padding: 10px;
+  }
+
+  .buttons {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .action {
+    font-size: 13px;
+    padding: 13px 7px;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  nav button {
+    font-size: 13px;
+  }
 }
 </style>
 </head>
@@ -207,584 +284,1118 @@ h2{margin-top:5px}
 </header>
 
 <nav>
-  <button class="active" onclick="showPage('recap',this)">📊 Récap</button>
-  <button onclick="showPage('leo',this)">👦 Léo</button>
-  <button onclick="showPage('chloe',this)">👧 Chloé</button>
-  <button onclick="showPage('cagnotte',this)">💰 Cagnotte</button>
+  <button class="active" onclick="showPage('recap', this)">📊 Récap</button>
+  <button onclick="showPage('leo', this)">👦 Léo</button>
+  <button onclick="showPage('cloe', this)">👧 Cloé</button>
+  <button onclick="showPage('cagnotte', this)">💰 Cagnotte</button>
 </nav>
 
 
-<!-- ================= RÉCAP ================= -->
+<!-- ================================================= -->
+<!-- RÉCAP -->
+<!-- ================================================= -->
 
 <div id="recap" class="page active">
 
-<h2>📊 Récapitulatif</h2>
+  <h2>📊 Récapitulatif</h2>
 
-<div id="recapLeo"></div>
-<div id="recapChloe"></div>
+  <div id="recapLeo"></div>
+
+  <div id="recapCloe"></div>
 
 </div>
 
 
-<!-- ================= LÉO ================= -->
+<!-- ================================================= -->
+<!-- LÉO -->
+<!-- ================================================= -->
 
 <div id="leo" class="page">
 
-<h2>👦 Léo</h2>
+  <h2>👦 Léo</h2>
 
-<div class="card solde">
-  <div>Solde actuel</div>
-  <div class="points" id="pointsLeo">0 pts</div>
-  <div class="euros" id="eurosLeo">0,00 €</div>
-</div>
+  <div class="card solde">
 
-<div class="card">
+    <div>Solde actuel</div>
 
-<h2 class="section-title">🟢 Récompenses</h2>
+    <div class="points" id="pointsLeo">
+      0 pts
+    </div>
 
-<div class="buttons">
+    <div class="euros" id="eurosLeo">
+      0,00 €
+    </div>
 
-<button class="action bon" onclick="addAction('leo','Faire son lit',1)">
-Faire son lit<br>+1 pt
-</button>
-
-<button class="action bon" onclick="addAction('leo','Ranger et nettoyer après son déjeuner',1)">
-Ranger et nettoyer<br>après son déjeuner<br>+1 pt
-</button>
-
-<button class="action bon" onclick="addAction('leo','Ranger la table et la nettoyer',1)">
-Ranger la table<br>et la nettoyer<br>+1 pt
-</button>
-
-<button class="action bon" onclick="addAction('leo','Ranger sa chambre de manière irréprochable',10)">
-Chambre irréprochable<br>+10 pts
-</button>
-
-<button class="action bon" onclick="addAction('leo','Ranger sa chambre simplement',2)">
-Ranger sa chambre<br>+2 pts
-</button>
-
-<button class="action bon" onclick="addAction('leo','Ramasser les crottes',20)">
-Ramasser les crottes<br>+20 pts
-</button>
-
-<button class="action bon" onclick="addAction('leo','Passer l’aspirateur correctement sur 1 niveau',5)">
-Aspirateur<br>1 niveau<br>+5 pts
-</button>
-
-</div>
-</div>
+  </div>
 
 
-<div class="card">
+  <!-- ANNULER DIRECTEMENT SOUS LE SOLDE -->
 
-<h2 class="section-title">🔴 Punitions</h2>
+  <div class="card">
 
-<div class="buttons">
+    <button class="undo" onclick="undoAction('leo')">
+      ↩️ Annuler la dernière action de Léo
+    </button>
 
-<button class="action mauvais" onclick="addAction('leo','Linge qui traîne',-1)">
-Linge qui traîne<br>-1 pt
-</button>
-
-<button class="action mauvais" onclick="addAction('leo','Chaussures qui traînent',-1)">
-Chaussures qui traînent<br>-1 pt
-</button>
-
-<button class="action mauvais" onclick="addAction('leo','Chamaillerie',-1)">
-Chamaillerie<br>-1 pt
-</button>
-
-<button class="action mauvais" onclick="addAction('leo','Bagarre',-5)">
-Bagarre<br>-5 pts
-</button>
-
-<button class="action mauvais" onclick="addAction('leo','Gros mots',-5)">
-Gros mots<br>-5 pts
-</button>
-
-<button class="action mauvais" onclick="addAction('leo','SDB sale',-10)">
-SDB sale<br>-10 pts
-</button>
-
-</div>
-</div>
+  </div>
 
 
-<div class="card">
+  <!-- RÉCOMPENSES -->
 
-<button class="undo" onclick="undoAction('leo')">
-↩️ Annuler la dernière action de Léo
-</button>
+  <div class="card">
 
-</div>
+    <h2 class="section-title">
+      🟢 Récompenses
+    </h2>
 
-</div>
+    <div class="buttons">
 
+      <button class="action bon"
+        onclick="addAction('leo','Faire son lit',1)">
+        Faire son lit<br>
+        +1 pt
+      </button>
 
-<!-- ================= CHLOÉ ================= -->
+      <button class="action bon"
+        onclick="addAction('leo','Ranger et nettoyer après son déjeuner',1)">
+        Ranger et nettoyer<br>
+        après son déjeuner<br>
+        +1 pt
+      </button>
 
-<div id="chloe" class="page">
+      <button class="action bon"
+        onclick="addAction('leo','Ranger la table et la nettoyer',1)">
+        Ranger la table<br>
+        et la nettoyer<br>
+        +1 pt
+      </button>
 
-<h2>👧 Chloé</h2>
+      <button class="action bon"
+        onclick="addAction('leo','Ranger sa chambre de manière irréprochable',10)">
+        Chambre irréprochable<br>
+        +10 pts
+      </button>
 
-<div class="card solde">
-  <div>Solde actuel</div>
-  <div class="points" id="pointsChloe">0 pts</div>
-  <div class="euros" id="eurosChloe">0,00 €</div>
-</div>
+      <button class="action bon"
+        onclick="addAction('leo','Ranger sa chambre simplement',2)">
+        Ranger sa chambre<br>
+        +2 pts
+      </button>
 
-<div class="card">
+      <button class="action bon"
+        onclick="addAction('leo','Ramasser les crottes',20)">
+        Ramasser les crottes<br>
+        +20 pts
+      </button>
 
-<h2 class="section-title">🟢 Récompenses</h2>
+      <button class="action bon"
+        onclick="addAction('leo','Passer l’aspirateur correctement sur 1 niveau',5)">
+        Aspirateur<br>
+        1 niveau<br>
+        +5 pts
+      </button>
 
-<div class="buttons">
+    </div>
 
-<button class="action bon" onclick="addAction('chloe','Faire son lit',1)">
-Faire son lit<br>+1 pt
-</button>
-
-<button class="action bon" onclick="addAction('chloe','Ranger et nettoyer après son déjeuner',1)">
-Ranger et nettoyer<br>après son déjeuner<br>+1 pt
-</button>
-
-<button class="action bon" onclick="addAction('chloe','Ranger la table et la nettoyer',1)">
-Ranger la table<br>et la nettoyer<br>+1 pt
-</button>
-
-<button class="action bon" onclick="addAction('chloe','Ranger sa chambre de manière irréprochable',10)">
-Chambre irréprochable<br>+10 pts
-</button>
-
-<button class="action bon" onclick="addAction('chloe','Ranger sa chambre simplement',2)">
-Ranger sa chambre<br>+2 pts
-</button>
-
-<button class="action bon" onclick="addAction('chloe','Ramasser les crottes',20)">
-Ramasser les crottes<br>+20 pts
-</button>
-
-<button class="action bon" onclick="addAction('chloe','Passer l’aspirateur correctement sur 1 niveau',5)">
-Aspirateur<br>1 niveau<br>+5 pts
-</button>
-
-</div>
-</div>
-
-
-<div class="card">
-
-<h2 class="section-title">🔴 Punitions</h2>
-
-<div class="buttons">
-
-<button class="action mauvais" onclick="addAction('chloe','Linge qui traîne',-1)">
-Linge qui traîne<br>-1 pt
-</button>
-
-<button class="action mauvais" onclick="addAction('chloe','Chaussures qui traînent',-1)">
-Chaussures qui traînent<br>-1 pt
-</button>
-
-<button class="action mauvais" onclick="addAction('chloe','Chamaillerie',-1)">
-Chamaillerie<br>-1 pt
-</button>
-
-<button class="action mauvais" onclick="addAction('chloe','Bagarre',-5)">
-Bagarre<br>-5 pts
-</button>
-
-<button class="action mauvais" onclick="addAction('chloe','Gros mots',-5)">
-Gros mots<br>-5 pts
-</button>
-
-<button class="action mauvais" onclick="addAction('chloe','SDB sale',-10)">
-SDB sale<br>-10 pts
-</button>
-
-</div>
-</div>
+  </div>
 
 
-<div class="card">
+  <!-- PUNITIONS -->
 
-<button class="undo" onclick="undoAction('chloe')">
-↩️ Annuler la dernière action de Chloé
-</button>
+  <div class="card">
 
-</div>
+    <h2 class="section-title">
+      🔴 Punitions
+    </h2>
+
+    <div class="buttons">
+
+      <button class="action mauvais"
+        onclick="addAction('leo','Linge qui traîne',-1)">
+        Linge qui traîne<br>
+        -1 pt
+      </button>
+
+      <button class="action mauvais"
+        onclick="addAction('leo','Chaussures qui traînent',-1)">
+        Chaussures qui traînent<br>
+        -1 pt
+      </button>
+
+      <button class="action mauvais"
+        onclick="addAction('leo','Chamaillerie',-1)">
+        Chamaillerie<br>
+        -1 pt
+      </button>
+
+      <button class="action mauvais"
+        onclick="addAction('leo','Bagarre',-5)">
+        Bagarre<br>
+        -5 pts
+      </button>
+
+      <button class="action mauvais"
+        onclick="addAction('leo','Gros mots',-5)">
+        Gros mots<br>
+        -5 pts
+      </button>
+
+      <button class="action mauvais"
+        onclick="addAction('leo','SDB sale',-10)">
+        SDB sale<br>
+        -10 pts
+      </button>
+
+    </div>
+
+  </div>
 
 </div>
 
 
-<!-- ================= CAGNOTTE ================= -->
+<!-- ================================================= -->
+<!-- CLOÉ -->
+<!-- ================================================= -->
+
+<div id="cloe" class="page">
+
+  <h2>👧 Cloé</h2>
+
+  <div class="card solde">
+
+    <div>Solde actuel</div>
+
+    <div class="points" id="pointsCloe">
+      0 pts
+    </div>
+
+    <div class="euros" id="eurosCloe">
+      0,00 €
+    </div>
+
+  </div>
+
+
+  <!-- ANNULER -->
+
+  <div class="card">
+
+    <button class="undo" onclick="undoAction('cloe')">
+      ↩️ Annuler la dernière action de Cloé
+    </button>
+
+  </div>
+
+
+  <!-- RÉCOMPENSES -->
+
+  <div class="card">
+
+    <h2 class="section-title">
+      🟢 Récompenses
+    </h2>
+
+    <div class="buttons">
+
+      <button class="action bon"
+        onclick="addAction('cloe','Faire son lit',1)">
+        Faire son lit<br>
+        +1 pt
+      </button>
+
+      <button class="action bon"
+        onclick="addAction('cloe','Ranger et nettoyer après son déjeuner',1)">
+        Ranger et nettoyer<br>
+        après son déjeuner<br>
+        +1 pt
+      </button>
+
+      <button class="action bon"
+        onclick="addAction('cloe','Ranger la table et la nettoyer',1)">
+        Ranger la table<br>
+        et la nettoyer<br>
+        +1 pt
+      </button>
+
+      <button class="action bon"
+        onclick="addAction('cloe','Ranger sa chambre de manière irréprochable',10)">
+        Chambre irréprochable<br>
+        +10 pts
+      </button>
+
+      <button class="action bon"
+        onclick="addAction('cloe','Ranger sa chambre simplement',2)">
+        Ranger sa chambre<br>
+        +2 pts
+      </button>
+
+      <button class="action bon"
+        onclick="addAction('cloe','Ramasser les crottes',20)">
+        Ramasser les crottes<br>
+        +20 pts
+      </button>
+
+      <button class="action bon"
+        onclick="addAction('cloe','Passer l’aspirateur correctement sur 1 niveau',5)">
+        Aspirateur<br>
+        1 niveau<br>
+        +5 pts
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- PUNITIONS -->
+
+  <div class="card">
+
+    <h2 class="section-title">
+      🔴 Punitions
+    </h2>
+
+    <div class="buttons">
+
+      <button class="action mauvais"
+        onclick="addAction('cloe','Linge qui traîne',-1)">
+        Linge qui traîne<br>
+        -1 pt
+      </button>
+
+      <button class="action mauvais"
+        onclick="addAction('cloe','Chaussures qui traînent',-1)">
+        Chaussures qui traînent<br>
+        -1 pt
+      </button>
+
+      <button class="action mauvais"
+        onclick="addAction('cloe','Chamaillerie',-1)">
+        Chamaillerie<br>
+        -1 pt
+      </button>
+
+      <button class="action mauvais"
+        onclick="addAction('cloe','Bagarre',-5)">
+        Bagarre<br>
+        -5 pts
+      </button>
+
+      <button class="action mauvais"
+        onclick="addAction('cloe','Gros mots',-5)">
+        Gros mots<br>
+        -5 pts
+      </button>
+
+      <button class="action mauvais"
+        onclick="addAction('cloe','SDB sale',-10)">
+        SDB sale<br>
+        -10 pts
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- CAGNOTTE -->
+<!-- ================================================= -->
 
 <div id="cagnotte" class="page">
 
-<h2>💰 Gestion de la cagnotte</h2>
-
-<div class="card">
-
-<h2>👦 Léo</h2>
-
-<div class="cagnotte" id="cagnotteLeo">0,00 €</div>
-
-<p class="info">100 points = 10 €</p>
-
-</div>
+  <h2>💰 Gestion de la cagnotte</h2>
 
 
-<div class="card">
+  <!-- LÉO -->
 
-<h2>👧 Chloé</h2>
+  <div class="card">
 
-<div class="cagnotte" id="cagnotteChloe">0,00 €</div>
+    <h2>👦 Léo</h2>
 
-<p class="info">100 points = 10 €</p>
+    <div class="cagnotte" id="cagnotteLeo">
+      0,00 €
+    </div>
 
-</div>
+    <p class="info">
+      100 points = 10 €
+    </p>
+
+    <div class="retrait-box">
+
+      <h3>💸 Retrait manuel de points</h3>
+
+      <input
+        type="number"
+        id="retraitLeo"
+        min="1"
+        step="1"
+        placeholder="Nombre de points à retirer">
+
+      <button class="retrait-btn"
+        onclick="retraitManuel('leo')">
+        Retirer les points
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- CLOÉ -->
+
+  <div class="card">
+
+    <h2>👧 Cloé</h2>
+
+    <div class="cagnotte" id="cagnotteCloe">
+      0,00 €
+    </div>
+
+    <p class="info">
+      100 points = 10 €
+    </p>
+
+    <div class="retrait-box">
+
+      <h3>💸 Retrait manuel de points</h3>
+
+      <input
+        type="number"
+        id="retraitCloe"
+        min="1"
+        step="1"
+        placeholder="Nombre de points à retirer">
+
+      <button class="retrait-btn"
+        onclick="retraitManuel('cloe')">
+        Retirer les points
+      </button>
+
+    </div>
+
+  </div>
 
 </div>
 
 
 <script>
 
-/* ================= DONNÉES ================= */
+/* ================================================= */
+/* DONNÉES */
+/* ================================================= */
 
-let data = JSON.parse(localStorage.getItem("pointsEnfants")) || {
-  leo: [],
-  chloe: []
-};
+let data =
+  JSON.parse(localStorage.getItem("pointsEnfants")) || {
+    leo: [],
+    cloe: []
+  };
 
 
-/* ================= SAUVEGARDE ================= */
+/* ================================================= */
+/* COMPATIBILITÉ ANCIENNES DONNÉES */
+/* ================================================= */
 
-function save(){
-  localStorage.setItem("pointsEnfants", JSON.stringify(data));
+if (!data.cloe && data.chloe) {
+  data.cloe = data.chloe;
+  delete data.chloe;
+}
+
+if (!data.leo) {
+  data.leo = [];
+}
+
+if (!data.cloe) {
+  data.cloe = [];
 }
 
 
-/* ================= DATE ================= */
+/* ================================================= */
+/* SAUVEGARDE */
+/* ================================================= */
 
-function today(){
-  let d = new Date();
+function save() {
 
-  let y = d.getFullYear();
-  let m = String(d.getMonth()+1).padStart(2,"0");
-  let day = String(d.getDate()).padStart(2,"0");
+  localStorage.setItem(
+    "pointsEnfants",
+    JSON.stringify(data)
+  );
+
+}
+
+
+/* ================================================= */
+/* DATE */
+/* ================================================= */
+
+function today() {
+
+  const d = new Date();
+
+  const y = d.getFullYear();
+
+  const m =
+    String(d.getMonth() + 1)
+    .padStart(2,"0");
+
+  const day =
+    String(d.getDate())
+    .padStart(2,"0");
 
   return `${y}-${m}-${day}`;
+
 }
 
 
-/* ================= AJOUT ================= */
+/* ================================================= */
+/* AJOUT D'ACTION */
+/* ================================================= */
 
-function addAction(child,name,points){
+function addAction(child,name,points) {
 
   data[child].push({
-    id:Date.now(),
-    name:name,
-    points:points,
-    date:today(),
-    time:new Date().toLocaleTimeString("fr-FR",{
-      hour:"2-digit",
-      minute:"2-digit"
-    })
+
+    id: Date.now(),
+
+    name: name,
+
+    points: points,
+
+    date: today(),
+
+    time:
+      new Date().toLocaleTimeString(
+        "fr-FR",
+        {
+          hour:"2-digit",
+          minute:"2-digit"
+        }
+      )
+
   });
 
   save();
+
   update();
+
 }
 
 
-/* ================= ANNULER ================= */
+/* ================================================= */
+/* RETRAIT MANUEL */
+/* ================================================= */
 
-function undoAction(child){
+function retraitManuel(child) {
 
-  if(data[child].length === 0){
-    alert("Aucune action à annuler.");
+  const input =
+    document.getElementById(
+      child === "leo"
+        ? "retraitLeo"
+        : "retraitCloe"
+    );
+
+  const value =
+    parseInt(input.value,10);
+
+  if (!value || value <= 0) {
+
+    alert(
+      "Indique un nombre de points supérieur à 0."
+    );
+
+    return;
+
+  }
+
+
+  const currentTotal =
+    total(child);
+
+
+  if (value > currentTotal) {
+
+    alert(
+      "Impossible de retirer plus de points que le solde actuel."
+    );
+
+    return;
+
+  }
+
+
+  data[child].push({
+
+    id: Date.now(),
+
+    name:
+      "Retrait manuel de cagnotte",
+
+    points:
+      -value,
+
+    date:
+      today(),
+
+    time:
+      new Date().toLocaleTimeString(
+        "fr-FR",
+        {
+          hour:"2-digit",
+          minute:"2-digit"
+        }
+      )
+
+  });
+
+
+  input.value = "";
+
+  save();
+
+  update();
+
+}
+
+
+/* ================================================= */
+/* ANNULER DERNIÈRE ACTION */
+/* ================================================= */
+
+function undoAction(child) {
+
+  if (data[child].length === 0) {
+
+    alert(
+      "Aucune action à annuler."
+    );
+
+    return;
+
+  }
+
+
+  const last =
+    data[child][data[child].length - 1];
+
+
+  const confirmUndo =
+    confirm(
+      `Annuler "${last.name}" (${last.points > 0 ? "+" : ""}${last.points} pts) ?`
+    );
+
+
+  if (!confirmUndo) {
     return;
   }
+
 
   data[child].pop();
 
   save();
+
   update();
+
 }
 
 
-/* ================= TOTAL ================= */
+/* ================================================= */
+/* TOTAL */
+/* ================================================= */
 
-function total(child){
+function total(child) {
 
   return data[child].reduce(
-    (sum,a)=>sum+a.points,
+    (sum,a) => sum + a.points,
     0
   );
+
 }
 
 
-/* ================= GAGNÉS ================= */
+/* ================================================= */
+/* POINTS GAGNÉS */
+/* ================================================= */
 
-function gained(child,actions=data[child]){
+function gained(child,actions=data[child]) {
 
   return actions
-    .filter(a=>a.points>0)
-    .reduce((sum,a)=>sum+a.points,0);
+    .filter(a => a.points > 0)
+    .reduce(
+      (sum,a) => sum + a.points,
+      0
+    );
+
 }
 
 
-/* ================= PERDUS ================= */
+/* ================================================= */
+/* POINTS PERDUS */
+/* ================================================= */
 
-function lost(child,actions=data[child]){
+function lost(child,actions=data[child]) {
 
   return Math.abs(
+
     actions
-      .filter(a=>a.points<0)
-      .reduce((sum,a)=>sum+a.points,0)
+      .filter(a => a.points < 0)
+      .reduce(
+        (sum,a) => sum + a.points,
+        0
+      )
+
   );
+
 }
 
 
-/* ================= EUROS ================= */
+/* ================================================= */
+/* CONVERSION EUROS */
+/* ================================================= */
 
-function euros(points){
+function euros(points) {
 
-  return (points * 0.10)
-    .toFixed(2)
-    .replace(".",",") + " €";
+  return (
+
+    points * 0.10
+
+  )
+  .toFixed(2)
+  .replace(".",",")
+  + " €";
+
 }
 
 
-/* ================= JOUR ================= */
+/* ================================================= */
+/* FORMAT DATE */
+/* ================================================= */
 
-function formatDate(date){
+function formatDate(date) {
 
-  let d = new Date(date+"T12:00:00");
+  const d =
+    new Date(date + "T12:00:00");
 
-  return d.toLocaleDateString("fr-FR",{
-    weekday:"long",
-    day:"2-digit",
-    month:"2-digit"
+  return d.toLocaleDateString(
+    "fr-FR",
+    {
+      weekday:"long",
+      day:"2-digit",
+      month:"2-digit"
+    }
+  );
+
+}
+
+
+/* ================================================= */
+/* ACTIONS DE LA SEMAINE */
+/* ================================================= */
+
+function weekActions(child) {
+
+  const now = new Date();
+
+  const day =
+    now.getDay();
+
+  const monday =
+    new Date(now);
+
+  const diff =
+    day === 0
+      ? -6
+      : 1 - day;
+
+  monday.setDate(
+    now.getDate() + diff
+  );
+
+  monday.setHours(
+    0,0,0,0
+  );
+
+
+  const sunday =
+    new Date(monday);
+
+  sunday.setDate(
+    monday.getDate() + 6
+  );
+
+  sunday.setHours(
+    23,59,59,999
+  );
+
+
+  return data[child].filter(a => {
+
+    const d =
+      new Date(a.date + "T12:00:00");
+
+    return d >= monday &&
+           d <= sunday;
+
   });
+
 }
 
 
-/* ================= SEMAINE ================= */
+/* ================================================= */
+/* RÉCAP */
+/* ================================================= */
 
-function weekActions(child){
+function buildRecap(child,name) {
 
-  let now = new Date();
+  const actions =
+    weekActions(child);
 
-  let day = now.getDay();
+  const g =
+    gained(child,actions);
 
-  let monday = new Date(now);
+  const l =
+    lost(child,actions);
 
-  let diff = day === 0 ? -6 : 1-day;
+  const balance =
+    g - l;
 
-  monday.setDate(now.getDate()+diff);
-
-  monday.setHours(0,0,0,0);
-
-  let sunday = new Date(monday);
-
-  sunday.setDate(monday.getDate()+6);
-
-  sunday.setHours(23,59,59,999);
-
-  return data[child].filter(a=>{
-
-    let d = new Date(a.date+"T12:00:00");
-
-    return d>=monday && d<=sunday;
-
-  });
-}
-
-
-/* ================= RÉCAP ================= */
-
-function buildRecap(child,name){
-
-  let actions = weekActions(child);
-
-  let g = gained(child,actions);
-  let l = lost(child,actions);
-  let balance = g-l;
 
   let html = `
 
-  <div class="card">
+    <div class="card">
 
-    <h2>${name}</h2>
+      <h2>${name}</h2>
 
-    <div class="stats">
+      <div class="stats">
 
-      <div class="stat">
-        🟢 Gagnés
-        <strong class="gagne">+${g}</strong>
+        <div class="stat">
+          🟢 Gagnés
+          <strong class="gagne">
+            +${g}
+          </strong>
+        </div>
+
+        <div class="stat">
+          🔴 Perdus
+          <strong class="perdu">
+            -${l}
+          </strong>
+        </div>
+
+        <div class="stat">
+          ⚖️ Solde
+          <strong>
+            ${balance > 0 ? "+" : ""}${balance}
+          </strong>
+        </div>
+
       </div>
 
-      <div class="stat">
-        🔴 Perdus
-        <strong class="perdu">-${l}</strong>
-      </div>
+      <h3>
+        Détail de la semaine
+      </h3>
 
-      <div class="stat">
-        ⚖️ Solde
-        <strong>${balance}</strong>
-      </div>
+      <table class="tableau">
 
-    </div>
-
-    <h3>Détail de la semaine</h3>
-
-    <table class="tableau">
-
-      <tr>
-        <th>Jour</th>
-        <th>🟢</th>
-        <th>🔴</th>
-        <th>Solde</th>
-      </tr>
+        <tr>
+          <th>Jour</th>
+          <th>🟢</th>
+          <th>🔴</th>
+          <th>Solde</th>
+        </tr>
   `;
 
 
-  let now = new Date();
+  const now =
+    new Date();
 
-  let day = now.getDay();
+  const day =
+    now.getDay();
 
-  let monday = new Date(now);
+  const monday =
+    new Date(now);
 
-  let diff = day === 0 ? -6 : 1-day;
+  const diff =
+    day === 0
+      ? -6
+      : 1 - day;
 
-  monday.setDate(now.getDate()+diff);
+  monday.setDate(
+    now.getDate() + diff
+  );
 
-  for(let i=0;i<7;i++){
 
-    let d = new Date(monday);
+  for(let i=0;i<7;i++) {
 
-    d.setDate(monday.getDate()+i);
+    const d =
+      new Date(monday);
 
-    let y=d.getFullYear();
-    let m=String(d.getMonth()+1).padStart(2,"0");
-    let da=String(d.getDate()).padStart(2,"0");
+    d.setDate(
+      monday.getDate() + i
+    );
 
-    let key=`${y}-${m}-${da}`;
 
-    let dayActions=actions.filter(a=>a.date===key);
+    const y =
+      d.getFullYear();
 
-    let dg=gained(child,dayActions);
-    let dl=lost(child,dayActions);
-    let ds=dg-dl;
+    const m =
+      String(d.getMonth()+1)
+      .padStart(2,"0");
 
-    let detail = dayActions.length
-      ? dayActions.map(a=>`
+    const da =
+      String(d.getDate())
+      .padStart(2,"0");
+
+
+    const key =
+      `${y}-${m}-${da}`;
+
+
+    const dayActions =
+      actions.filter(
+        a => a.date === key
+      );
+
+
+    const dg =
+      gained(
+        child,
+        dayActions
+      );
+
+    const dl =
+      lost(
+        child,
+        dayActions
+      );
+
+    const ds =
+      dg - dl;
+
+
+    const detail =
+      dayActions.length
+
+      ? dayActions
+          .map(a => `
+
+            <div class="action-line">
+
+              ${a.points > 0 ? "🟢" : "🔴"}
+
+              ${a.name}
+
+              <strong>
+                ${a.points > 0 ? "+" : ""}
+                ${a.points}
+              </strong>
+
+              <small>
+                (${a.time})
+              </small>
+
+            </div>
+
+          `)
+          .join("")
+
+      : `
           <div class="action-line">
-            ${a.points>0?"🟢":"🔴"}
-            ${a.name}
-            <strong>${a.points>0?"+":""}${a.points}</strong>
-            <small>(${a.time})</small>
+            Aucune action
           </div>
-        `).join("")
-      : `<div class="action-line">Aucune action</div>`;
+        `;
+
 
     html += `
 
-      <tr class="day" onclick="toggleDetail('${child}-${key}')">
-        <td>${formatDate(key)} 👆</td>
-        <td class="gagne">+${dg}</td>
-        <td class="perdu">-${dl}</td>
-        <td>${ds>0?"+":""}${ds}</td>
+      <tr
+        class="day"
+        onclick="toggleDetail('${child}-${key}')"
+      >
+
+        <td>
+          ${formatDate(key)} 👆
+        </td>
+
+        <td class="gagne">
+          +${dg}
+        </td>
+
+        <td class="perdu">
+          -${dl}
+        </td>
+
+        <td>
+          ${ds > 0 ? "+" : ""}
+          ${ds}
+        </td>
+
       </tr>
 
-      <tr id="${child}-${key}" class="detail">
+
+      <tr
+        id="${child}-${key}"
+        class="detail"
+      >
+
         <td colspan="4">
+
           <div class="detail-content">
+
             ${detail}
+
           </div>
+
         </td>
+
       </tr>
 
     `;
+
   }
 
 
   html += `
-    </table>
 
-  </div>
+      </table>
+
+    </div>
+
   `;
 
+
   return html;
+
 }
 
 
-/* ================= AFFICHER ================= */
+/* ================================================= */
+/* MISE À JOUR */
+/* ================================================= */
 
-function update(){
+function update() {
 
-  let leoTotal=total("leo");
-  let chloeTotal=total("chloe");
+  const leo =
+    total("leo");
 
-  document.getElementById("pointsLeo").textContent =
-    leoTotal+" pts";
+  const cloe =
+    total("cloe");
 
-  document.getElementById("pointsChloe").textContent =
-    chloeTotal+" pts";
 
-  document.getElementById("eurosLeo").textContent =
-    euros(leoTotal);
+  document.getElementById(
+    "pointsLeo"
+  ).textContent =
+    leo + " pts";
 
-  document.getElementById("eurosChloe").textContent =
-    euros(chloeTotal);
 
-  document.getElementById("cagnotteLeo").textContent =
-    euros(leoTotal);
+  document.getElementById(
+    "pointsCloe"
+  ).textContent =
+    cloe + " pts";
 
-  document.getElementById("cagnotteChloe").textContent =
-    euros(chloeTotal);
 
-  document.getElementById("recapLeo").innerHTML =
-    buildRecap("leo","👦 Léo");
+  document.getElementById(
+    "eurosLeo"
+  ).textContent =
+    euros(leo);
 
-  document.getElementById("recapChloe").innerHTML =
-    buildRecap("chloe","👧 Chloé");
+
+  document.getElementById(
+    "eurosCloe"
+  ).textContent =
+    euros(cloe);
+
+
+  document.getElementById(
+    "cagnotteLeo"
+  ).textContent =
+    euros(leo);
+
+
+  document.getElementById(
+    "cagnotteCloe"
+  ).textContent =
+    euros(cloe);
+
+
+  document.getElementById(
+    "recapLeo"
+  ).innerHTML =
+    buildRecap(
+      "leo",
+      "👦 Léo"
+    );
+
+
+  document.getElementById(
+    "recapCloe"
+  ).innerHTML =
+    buildRecap(
+      "cloe",
+      "👧 Cloé"
+    );
+
 }
 
 
-/* ================= DÉTAIL ================= */
+/* ================================================= */
+/* OUVRIR / FERMER LE DÉTAIL D'UNE JOURNÉE */
+/* ================================================= */
 
-function toggleDetail(id){
+function toggleDetail(id) {
 
-  let row=document.getElementById(id);
+  const row =
+    document.getElementById(id);
 
-  if(row){
-    row.classList.toggle("open");
+  if(row) {
+
+    row.classList.toggle(
+      "open"
+    );
+
   }
 
 }
 
 
-/* ================= NAVIGATION ================= */
+/* ================================================= */
+/* NAVIGATION */
+/* ================================================= */
 
-function showPage(page,button){
+function showPage(page,button) {
 
-  document.querySelectorAll(".page")
-    .forEach(p=>p.classList.remove("active"));
+  document
+    .querySelectorAll(".page")
+    .forEach(
+      p => p.classList.remove("active")
+    );
 
-  document.getElementById(page)
+
+  document
+    .getElementById(page)
     .classList.add("active");
 
-  document.querySelectorAll("nav button")
-    .forEach(b=>b.classList.remove("active"));
+
+  document
+    .querySelectorAll("nav button")
+    .forEach(
+      b => b.classList.remove("active")
+    );
+
 
   button.classList.add("active");
 
   update();
+
 }
 
 
-/* ================= INITIALISATION ================= */
+/* ================================================= */
+/* INITIALISATION */
+/* ================================================= */
+
+save();
 
 update();
 
